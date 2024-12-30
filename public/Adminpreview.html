@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Preview</title>
+    <link rel="stylesheet" href="Adminepanel.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AdminPanel.html">Admin Panel</a></li>
+            <!-- Add other navigation links as needed -->
+        </ul>
+    </nav>
+    <h1>Admin Preview</h1>
+    <section id="product1" class="section-p1">
+        <h2>All Medicines</h2>
+        <div class="pro-container" id="product-container">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/medicines')
+                .then(response => response.json())
+                .then(medicines => {
+                    const productContainer = document.getElementById('product-container');
+                    medicines.forEach(medicine => {
+                        const productDiv = document.createElement('div');
+                        productDiv.classList.add('pro');
+                        productDiv.innerHTML = `
+                            <img src="imgs/products/${medicine.image}" alt="${medicine.name}" class="fixed-size">
+                            <div class="napa">
+                                <span>Pharmaceuticals Ltd.</span>
+                                <h5>${medicine.name}</h5>
+                                <h4>MRP: ${medicine.price}Rs</h4>
+                                <button class="edit-btn" data-id="${medicine.name}">Edit</button>
+                                <button class="delete-btn" data-id="${medicine.name}">Delete</button>
+                            </div>
+                        `;
+                        productContainer.appendChild(productDiv);
+                    });
+
+                    // Add event listeners for edit and delete buttons
+                    document.querySelectorAll('.edit-btn').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const medicineName = this.getAttribute('data-id');
+                            // Implement edit functionality here
+                            alert('Edit medicine: ' + medicineName);
+                        });
+                    });
+
+                    document.querySelectorAll('.delete-btn').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const medicineName = this.getAttribute('data-id');
+                            // Implement delete functionality here
+                            fetch(`/medicines/${medicineName}`, {
+                                method: 'DELETE'
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    // Remove the medicine element from the DOM
+                                    this.closest('.pro').remove();
+                                } else {
+                                    alert('Failed to delete medicine');
+                                }
+                            });
+                        });
+                    });
+                });
+        });
+    </script>
+</body>
+</html>

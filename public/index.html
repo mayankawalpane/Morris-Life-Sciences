@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morri Life Science Pvt.Ltd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="header">
+    <a href="#"><img width="100px" src="imgs/logo.png" alt=""></a>
+    <div id="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="navbar">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="Shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <!-- <li><a href="Medicines.html">Medicines</a></li> -->
+      <li><a href="AdminPanel.html">Admin</a></li>
+      <li><a href="cart.html"><img width="20px" src="imgs/shopping-cart.png" alt=""></a></li>
+    </ul>
+  </section>
+
+  <script>function toggleMenu() {
+    const navbar = document.getElementById("navbar");
+    navbar.classList.toggle("active");
+  }
+  </script>
+  
+
+    <section id="hero">
+         <!-- <h1>Welcome</h1> -->
+        
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2> Our products</h2>
+        <p>Seasonal service demand is high</p>
+        <div class="pro-container" id="product-container">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="banner" class="section-m1" style="position: relative; background: linear-gradient(90deg, #ffc164, #a870ef); color: #fff; padding: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; overflow: hidden;">
+      <!-- Text Content -->
+      <div style="flex: 1; z-index: 2; padding-right: 20px;">
+        <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 10px;">Become a <span style="color: #ffcc33;">Plus</span> member</h2>
+        <h4 style="font-size: 18px; font-weight: 400; margin-bottom: 10px;">And enjoy extra bachat on every order</h4>
+        <p style="font-size: 14px; line-height: 1.5; margin-bottom: 20px;">Save 5% on medicines, 50% on 1st lab test & get FREE Services with PLUS membership <a href="#" style="color: #ffd700; text-decoration: none;">Know more &gt;</a></p>
+        <a href="Shop.html" style="display: inline-block; padding: 10px 20px; background-color: #ffd700; color: #000; text-decoration: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer;">Explore Now &gt;</a>
+      </div>
+    
+      <!-- Image -->
+      <div style="position: absolute; bottom: 0; right: 30px; z-index: 1;">
+        <img src="https://assets.pharmeasy.in/apothecary/_next/static/media/PlusFamily.22677720.png?dim=1440x0" alt="Group Photo" style="width: 350px; border-radius: 8px; object-fit: cover;">
+      </div>
+    </section>
+    
+    
+    
+      
+
+    
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+    <section style="padding: 20px;">
+      <h2 style="font-size: 24px; margin-bottom: 15px; font-weight: bold;">New Product</h2>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <!-- <button 
+          style="border: none; background-color: #000; color: #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+          onclick="scrollCarousel(-150)">
+          &lt;
+        </button> -->
+        <div 
+          id="carousel-container" 
+          style="display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; flex-wrap: nowrap; white-space: nowrap; width: 100%;"
+        >
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <div style=" color: #fff; font-size: 12px; font-weight: bold; padding: 3px 6px; border-radius: 4px; margin-bottom: 8px;"></div>
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/d2c31b9f3ad13d5aa181796350117659.png?f=png?dim=256x0" alt="Sports nutrition" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Sports nutrition</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <div style= color:#fff; font-size: 12px; font-weight: bold; padding: 3px 6px; border-radius: 4px; margin-bottom: 8px;></div>
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/a368dd6d66833c4187d1dceaed1440b4.png?f=png?dim=256x0" alt="Homeopathy care" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Homeopathy care</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/c480fc4eaf3b30c9a44b4dd2c376747b.png?f=png?dim=256x0" alt="Elderly care" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Elderly care</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/105ceca515ee30509f93309ae75306aa.png?f=png?dim=256x0" alt="Personal care" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Personal care</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/00c6685010c53ef683ae1cb7ee9b25d9.png?f=png?dim=256x0" alt="Healthcare devices" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Healthcare devices</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/4405b7900b0b34fcb5c8572aae9d4b2e.png?f=png?dim=256x0" alt="Health food and drinks" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Health food and drinks</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/eecea6d6d8d73267a175b77346c05dc2.png?f=png?dim=256x0" alt="Skin care" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Skin care</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/6c4351e2d61d364dbeb5167023a0bc3a.png?f=png?dim=256x0" alt="Skin care" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Skin care</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/fa936f30b4563fc4abd187fb22fe5258.png?f=png?dim=256x0" alt="Skin care" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Skin care</p>
+          </div>
+          <div style="width: 150px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <img src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/f10917087a483040b557e4b18204312c.png?f=png?dim=256x0" alt="Skin care" style="width: 100%; height: auto; border-radius: 8px;">
+            <p style="font-size: 14px; margin-top: 5px;">Skin care</p>
+          </div>
+         
+          
+        </div>
+        <!-- <button 
+          style="border: none; background-color: #000; color: #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+          onclick="scrollCarousel(150)">
+          &gt;
+        </button> -->
+      </div>
+    </section>
+  
+    <script>
+      function scrollCarousel(distance) {
+        const container = document.getElementById('carousel-container');
+        container.scrollBy({ left: distance, behavior: 'smooth' });
+      }
+  
+      function autoScrollCarousel() {
+        const container = document.getElementById('carousel-container');
+        setInterval(() => {
+          container.scrollBy({ left: 150, behavior: 'smooth' });
+        }, 3000); // Change every 3 seconds
+      }
+  
+      document.addEventListener('DOMContentLoaded', autoScrollCarousel);
+    </script>
+
+       <!-- Main Heading with Typing Effect -->
+<section id="about-us" style="text-align: center; padding: 50px; background-color: #f19844; color: white;">
+  <h1 id="main-heading" style="font-size: 36px; margin: 0;"></h1>
+  <p style="font-size: 18px; margin-top: 10px;">We Bring Care to Health.</p>
+</section>
+
+<!-- About Us Section -->
+<section style="padding: 40px; max-width: 1200px; margin: auto;">
+  <h2 style="font-size: 28px; color: #007bff; margin-bottom: 20px;">Stay Healthy with Morris Life Science Pvt. Ltd.</h2>
+  <p>
+    Morris Life Science Pvt. Ltd. is Nagpur's leading digital healthcare platform. From online doctor consultations to doorstep medicine delivery and lab tests at home, we’ve got everything covered for you. With countless orders delivered in Nagpur and beyond, we are on a mission to bring “care” to “health” and provide a seamless healthcare experience.
+  </p>
+</section>
+
+<!-- Trusted Online Pharmacy Section -->
+<section style="padding: 40px; background-color: #f8f9fa; max-width: 1200px; margin: auto; border-radius: 10px;">
+  <h2 style="font-size: 28px; color: #007bff; margin-bottom: 20px;">Morris Life Science Pvt. Ltd.: Your Trusted Online Pharmacy!</h2>
+  <p>
+    Morris Life Science Pvt. Ltd. is a trusted name in Nagpur for medicines and healthcare products. With over 2 lakh products available, including prescription medicines, over-the-counter pharmaceuticals, healthcare devices, homeopathy, and Ayurveda medicines, we are your one-stop solution for health and wellness.
+  </p>
+  <p>
+    With us, you can conveniently buy medicines online and get them delivered right to your doorstep. Wondering if ordering online is complicated? Not at all! Simply search for the products you need, add them to your cart, and checkout. Sit back and relax while we deliver your order securely and promptly.
+  </p>
+  <p>
+    And there’s more! Our products are also available on <strong>JioMart</strong>, giving you additional convenience and access to our wide range of offerings.
+  </p>
+  <p>
+    Need help? Just call us, and we’ll assist you in completing your order. Enjoy exciting discounts on medicines and healthcare products with Morris Life Science Pvt. Ltd.
+  </p>
+  <p>Why wait in long queues at the pharmacy when Morris Life Science Pvt. Ltd. is here for you?</p>
+</section>
+
+<!-- Why Choose Us Section -->
+<section style="padding: 40px; max-width: 1200px; margin: auto;">
+  <h2 style="font-size: 28px; color: #f19844; margin-bottom: 20px;">Why Choose Morris Life Science Pvt. Ltd.?</h2>
+  <ul style="font-size: 18px; list-style-type: none; padding-left: 0;">
+    <li>Trusted by thousands of happy customers for quality and affordability.</li>
+    <li>Available on multiple platforms, including JioMart.</li>
+    <li>A growing presence across Nagpur and surrounding areas.</li>
+  </ul>
+</section>
+
+<!-- Services Section -->
+<section style="padding: 40px; background-color: #f8f9fa; max-width: 1200px; margin: auto; border-radius: 10px;">
+  <h2 style="font-size: 28px; color: #f19844; margin-bottom: 20px;">The Services We Offer</h2>
+  <ul style="font-size: 18px; list-style-type: none; padding-left: 0;">
+    <li><strong>Buy Medicines Online:</strong> Get medicines delivered at your doorstep in Nagpur and nearby regions.</li>
+    <li><strong>Access Accurate Medicine Information:</strong> We provide detailed, trustworthy information about medicines to help you use them safely and effectively.</li>
+    <li><strong>Book Lab Tests at Home:</strong> Choose from 2,000+ lab tests, conducted by top verified labs, at the best prices.</li>
+    <li><strong>Consult Doctors Online:</strong> Connect with specialists across 20+ fields quickly and easily through our platform.</li>
+  </ul>
+  <p>
+    Our team of trained doctors, pharmacists, and technicians ensures every order is handled with utmost care, giving you a seamless experience.
+  </p>
+</section>
+
+<!-- Call to Action Section -->
+<section style="padding: 40px; text-align: center; background-color: #f19844; color: white;">
+  <h2 style="font-size: 28px; margin-bottom: 20px;">Why Morris Life Science Pvt. Ltd.?</h2>
+  <p style="font-size: 18px;">
+    We are committed to making quality healthcare accessible at affordable prices. With customer satisfaction as our core value, we constantly strive to improve and innovate for your better health.
+  </p>
+  <p style="font-size: 18px;">Visit <strong>Morris Life Science Pvt. Ltd.</strong> today to enjoy our services and stay healthy.</p>
+</section>
+
+<!-- JavaScript for Typing Effect -->
+<script>
+  const text = "Stay Healthy with Morris Life Science Pvt. Ltd.: Your Trusted Online Pharmacy and Healthcare Platform";
+  let i = 0;
+  const speed = 100; // typing speed in milliseconds
+  const mainHeading = document.getElementById("main-heading");
+
+  function typeText() {
+    if (i < text.length) {
+      mainHeading.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeText, speed);
+    }
+  }
+
+  // Start typing effect when page loads
+  window.onload = typeText;
+</script>
+
+    
+    <footer class="section-p1">
+        <div class="col">
+            <img width="100px" src="imgs/logo.png" class="logo">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> 103, Shri Gajanan Residency, Mankapur, Nagpur-440030</p>
+            <p><strong>Phone:</strong>+91 9765000429</p>
+            <p><strong>Hours:</strong>10:00AM - 5:00PM Sun-Fri</p>
+            <div class="follow">
+                <h4>Follow</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="about.html">About us</a>
+            <a href="#">Delivery information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms $ Conditions</a>
+            <a href="#">Contact us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track my order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App store or Google play</p>
+            <div>
+                <img width="100px" src="imgs/features/Google-Play-App.png" alt="">
+                <img src="" alt="">
+            </div>
+            <p>Secured Payment Gateway</p>
+            <img src="" alt="">
+        </div>
+        <div class="copyright">
+            <p>@ 2024, Morris Life Sciences</p>
+        </div>
+    </footer>
+    
+    <!-- <section id="product1" class="section-p1">
+        <h2>All Medicines</h2>
+        <div class="pro-container" id="product-container">
+            <!-- Products will be dynamically loaded here -->
+        <!-- </div>
+    </section> --> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/medicines')
+                .then(response => response.json())
+                .then(medicines => {
+                    const productContainer = document.getElementById('product-container');
+                    medicines.forEach(medicine => {
+                        const productDiv = document.createElement('div');
+                        productDiv.classList.add('pro');
+                        productDiv.innerHTML = `
+                            <img src="imgs/products/${medicine.image}" alt="${medicine.name}" class="fixed-size">
+                            <div class="napa">
+                                <span>Morris Life Sciences Pvt.Ltd</span>
+                                <h5>${medicine.name}</h5>
+                                <h4>MRP: ${medicine.price} Rs</h4>
+                            </div>
+                        `;
+                        productContainer.appendChild(productDiv);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
