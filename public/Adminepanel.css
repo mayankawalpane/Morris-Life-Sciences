@@ -76,8 +76,6 @@ form button:hover {
     background-color: #555;
 }
 
-/* Existing CSS */
-...
 
 /* New CSS for Edit and Delete buttons */
 .pro .edit-btn, .pro .delete-btn {

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - Morris Life Sciences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Added responsive styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Gemunu Libre', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #66006e;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .search-section {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-input {
+            width: 90%;
+            max-width: 600px;
+            padding: 15px;
+            border: 2px solid #66006e;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .help-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 15px;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .help-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .help-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .help-icon {
+            font-size: 40px;
+            color: #66006e;
+            margin-bottom: 15px;
+        }
+
+        .help-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .help-list li {
+            margin: 10px 0;
+        }
+
+        .help-list a {
+            color: #66006e;
+            text-decoration: none;
+        }
+
+        .faq-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-section {
+            background-color: #66006e;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-button {
+            background-color: white;
+            color: #66006e;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            .search-section {
+                padding: 15px;
+            }
+
+            .search-input {
+                width: 95%;
+                padding: 12px;
+            }
+
+            .help-categories {
+                padding: 10px;
+            }
+
+            .help-card {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .help-icon {
+                font-size: 32px;
+            }
+
+            .faq-section {
+                padding: 15px;
+            }
+
+            .contact-section {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: #66006e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <!-- Logo -->
+                <a href="/">
+                    <img src="imgs/logo.png" alt="Logo" style="height: 2.5rem; width: auto;">
+                </a>
+    
+                <!-- Navigation -->
+                <nav id="desktop-nav" style="display: none;">
+                    <ul style="display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none;">
+                        <li><a href="/" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Home</a></li>
+                        <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Shop</a></li>
+                        <li><a href="/about.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">About</a></li>
+                        <li><a href="/contact.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+    
+            <!-- Search Field -->
+            <div id="desktop-search" style="display: none; margin: 0 2rem; position: relative; flex: 1; max-width: 24rem;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                    <!-- <i class="fas fa-search" style="color: #4B5563; font-size: 1rem;"></i> -->
+                </button>
+            </div>
+    
+            <!-- Icons -->
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="/Shop.html" style="color: #ffffff; padding: 0.5rem; text-decoration: none; transition: color 0.3s ease;">
+                    <i class="fas fa-shopping-cart" style="font-size: 1.5rem;"></i>
+                </a>
+                <a href="javascript:void(0);" onclick="showCallPopup()" class="call-icon">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  
+                </a>
+               
+                <!-- Call Popup -->
+                <div id="callPopup" class="popup-overlay">
+                  <div class="popup-box">
+                    <p class="popup-text">Call on <strong>+91 9765000429</strong>?</p>
+                    <div class="popup-buttons">
+                      <button onclick="makeCall()" class="btn call-btn">📞 Call</button>
+                      <button onclick="closePopup()" class="btn cancel-btn">❌ Cancel</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- CSS Styling -->
+                <style>
+                  /* Phone Icon Styling */
+                  .call-icon {
+                    color: #ffffff;
+                    padding: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #007bff;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    text-decoration: none;
+                    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+                    transition: background 0.3s ease-in-out, transform 0.2s;
+                  }
+                
+                  .call-icon:hover {
+                    background: #0056b3;
+                    transform: scale(1.1);
+                  }
+                
+                  .call-icon i {
+                    font-size: 1.5rem;
+                    transform: rotate(100deg); /* Ensures the icon is not rotated */
+                  }
+                
+                  /* Popup Styling */
+                  .popup-overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(3px);
+                    justify-content: center;
+                    align-items: center;
+                  }
+                
+                  .popup-box {
+                    background: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    text-align: center;
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+                    width: 90%;
+                    max-width: 350px;
+                  }
+                
+                  .popup-text {
+                    font-size: 1.2rem;
+                    margin-bottom: 15px;
+                    color: #333;
+                  }
+                
+                  .popup-buttons {
+                    display: flex;
+                    justify-content: space-around;
+                  }
+                
+                  .btn {
+                    padding: 10px 20px;
+                    font-size: 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: transform 0.2s;
+                  }
+                
+                  .btn:hover {
+                    transform: scale(1.05);
+                  }
+                
+                  .call-btn {
+                    background: #28a745;
+                    color: white;
+                  }
+                
+                  .call-btn:hover {
+                    background: #218838;
+                  }
+                
+                  .cancel-btn {
+                    background: #dc3545;
+                    color: white;
+                  }
+                
+                  .cancel-btn:hover {
+                    background: #c82333;
+                  }
+                </style>
+                
+                <!-- JavaScript for Popup -->
+                <script>
+                  function showCallPopup() {
+                    document.getElementById("callPopup").style.display = "flex";
+                  }
+                
+                  function closePopup() {
+                    document.getElementById("callPopup").style.display = "none";
+                  }
+                
+                  function makeCall() {
+                    window.location.href = "tel:+919765000429";
+                  }
+                </script>
+                
+                
+                
+                
+                <button id="menu-toggle" style="display: none; color: #ffffff; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-bars" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" style="position: fixed; top: 0; right: 0; height: 100%; background: white; box-shadow: -2px 0 4px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease-in-out; width: 66.666%; display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 900;">Welcome </h2>
+                <button id="close-menu" style="color: #374151; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-times" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+    
+            <div style="padding: 1rem; position: relative;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);">
+                    <!-- <i class="fa fa-phone" style="color: #4B5563; font-size: 1rem;"></i>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                      -->
+    
+                      <img src="imgs/log.jpg" alt="Logo" style="height: 2.5rem; width: auto; ">
+                </button>
+            </div>
+    
+            <nav style="margin-top: 1rem; padding: 1rem;">
+              <ul style="display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 0; list-style: none;">
+                  <li>
+                      <a href="/" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-home" style="margin-right: 8px;"></i>Home
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Shop
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/about.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-info-circle" style="margin-right: 8px;"></i>About
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/contact.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact
+                      </a>
+                  </li>
+                  <a>________________________</a>
+                 <!-- Add Font Awesome CSS in the head of your HTML -->
+    
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li>
+        <a href="./Help.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+            <i class="fas fa-question-circle" style="margin-right: 8px;"></i>
+            Help
+        </a>
+    </li>
+        <li>
+            <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-headset" style="margin-right: 8px;"></i>
+                Support
+            </a>
+        </li>
+        <li>
+            <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-book-open" style="margin-right: 8px;"></i>
+                Read Article
+            </a>
+        </li>
+        <li>
+          <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+              <i class="fas fa-file-contract" style="margin-right: 8px;"></i>
+              Terms and Services
+          </a>
+      </li>
+    </ul>
+              </ul>
+          </nav>
+        </div>
+    </header>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const desktopNav = document.getElementById('desktop-nav');
+            const desktopSearch = document.getElementById('desktop-search');
+    
+            // Function to check window width and update display
+            function checkWidth() {
+                if (window.innerWidth >= 640) {
+                    desktopNav.style.display = 'block';
+                    desktopSearch.style.display = 'block';
+                    menuToggle.style.display = 'none';
+                    mobileMenu.style.display = 'none';
+                } else {
+                    desktopNav.style.display = 'none';
+                    desktopSearch.style.display = 'none';
+                    menuToggle.style.display = 'block';
+                    mobileMenu.style.display = 'block';
+                }
+            }
+    
+            // Initial check
+            checkWidth();
+    
+            // Listen for window resize
+            window.addEventListener('resize', checkWidth);
+    
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(0)';
+            });
+    
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(100%)';
+            });
+    
+            // Add hover effect to navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = link.closest('#mobile-menu') ? '#374151' : '#ffffff';
+                });
+            });
+    
+            // Add hover effect to icon links
+            const iconLinks = document.querySelectorAll('a[href="/cart"], a[href="/login"]');
+            iconLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = '#ffffff';
+                });
+            });
+        });
+    </script>
+
+    <div class="search-section">
+        <input type="text" id="searchHelp" class="search-input" placeholder="Search for help topics...">
+    </div>
+
+    <div class="help-categories">
+        <!-- Category 1 -->
+        <div class="help-card">
+            <i class="fas fa-shopping-cart help-icon"></i>
+            <h3>Ordering & Payment</h3>
+            <ul class="help-list">
+                <li><a href="#">How to place an order</a></li>
+                <li><a href="#">Payment methods</a></li>
+                <li><a href="#">Order tracking</a></li>
+            </ul>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="help-card">
+            <i class="fas fa-truck help-icon"></i>
+            <h3>Shipping & Delivery</h3>
+            <ul class="help-list">
+                <li><a href="#">Delivery areas</a></li>
+                <li><a href="#">Shipping charges</a></li>
+                <li><a href="#">Delivery timeline</a></li>
+            </ul>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="help-card">
+            <i class="fas fa-exchange-alt help-icon"></i>
+            <h3>Returns & Refunds</h3>
+            <ul class="help-list">
+                <li><a href="#">Return policy</a></li>
+                <li><a href="#">Refund process</a></li>
+                <li><a href="#">Cancellation policy</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <h2 style="color: #66006e; text-align: center;">Frequently Asked Questions</h2>
+        <div id="faqContainer"></div>
+    </div>
+
+    <div class="contact-section">
+        <h2>Still Need Help?</h2>
+        <p>Contact our customer support team</p>
+        <button onclick="contactSupport()" class="contact-button">
+            Contact Support
+        </button>
+    </div>
+
+    <script>
+        // FAQ Data
+        const faqs = [
+            {
+                question: "How do I order medicines online?",
+                answer: "You can order medicines by searching for the required medicine, adding it to cart, and following the checkout process. Upload your prescription if required."
+            },
+            {
+                question: "What are the payment options available?",
+                answer: "We accept various payment methods including credit/debit cards, net banking, UPI, and cash on delivery."
+            },
+            {
+                question: "How long does delivery take?",
+                answer: "Delivery typically takes 1-4 business days depending on your location."
+            }
+        ];
+
+        // Generate FAQ Elements
+        window.onload = function() {
+            const faqContainer = document.getElementById('faqContainer');
+            faqs.forEach((faq, index) => {
+                const faqElement = document.createElement('div');
+                faqElement.className = 'faq-item';
+                faqElement.innerHTML = `
+                    <div onclick="toggleFaq(${index})" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0;">${faq.question}</h3>
+                        <span id="faqIcon${index}">+</span>
+                    </div>
+                    <div id="faqAnswer${index}" style="display: none; margin-top: 10px;">
+                        ${faq.answer}
+                    </div>
+                `;
+                faqContainer.appendChild(faqElement);
+            });
+        };
+
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faqAnswer${index}`);
+            const icon = document.getElementById(`faqIcon${index}`);
+            if (answer.style.display === 'none') {
+                answer.style.display = 'block';
+                icon.textContent = '-';
+            } else {
+                answer.style.display = 'none';
+                icon.textContent = '+';
+            }
+        }
+
+        function contactSupport() {
+            window.location.href = "mailto:support@morrislifesciences.com";
+        }
+    </script>
+</body>
+</html>

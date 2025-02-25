@@ -10,47 +10,404 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <section id="header">
-    <a href="#"><img width="100px" src="imgs/logo.png" alt=""></a>
-    <div id="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <ul id="navbar">
-      <li><a class="active" href="index.html">Home</a></li>
-      <li><a href="Shop.html">Shop</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <!-- <li><a href="Medicines.html">Medicines</a></li> -->
-      <li><a href="AdminPanel.html">Admin</a></li>
-      <li><a href="cart.html"><img width="20px" src="imgs/shopping-cart.png" alt=""></a></li>
+    <header style="background-color: #66006e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <!-- Logo -->
+                <a href="/">
+                    <img src="imgs/logo.png" alt="Logo" style="height: 2.5rem; width: auto;">
+                </a>
+    
+                <!-- Navigation -->
+                <nav id="desktop-nav" style="display: none;">
+                    <ul style="display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none;">
+                        <li><a href="/" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Home</a></li>
+                        <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Shop</a></li>
+                        <li><a href="/about.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">About</a></li>
+                        <li><a href="/contact.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+    
+            <!-- Search Field -->
+            <div id="desktop-search" style="display: none; margin: 0 2rem; position: relative; flex: 1; max-width: 24rem;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                    <!-- <i class="fas fa-search" style="color: #4B5563; font-size: 1rem;"></i> -->
+                </button>
+            </div>
+    
+            <!-- Icons -->
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="/Shop.html" style="color: #ffffff; padding: 0.5rem; text-decoration: none; transition: color 0.3s ease;">
+                    <i class="fas fa-shopping-cart" style="font-size: 1.5rem;"></i>
+                </a>
+                <a href="javascript:void(0);" onclick="showCallPopup()" class="call-icon">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  
+                </a>
+               
+                <!-- Call Popup -->
+                <div id="callPopup" class="popup-overlay">
+                  <div class="popup-box">
+                    <p class="popup-text">Call on <strong>+91 9765000429</strong>?</p>
+                    <div class="popup-buttons">
+                      <button onclick="makeCall()" class="btn call-btn">📞 Call</button>
+                      <button onclick="closePopup()" class="btn cancel-btn">❌ Cancel</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- CSS Styling -->
+                <style>
+                  /* Phone Icon Styling */
+                  .call-icon {
+                    color: #ffffff;
+                    padding: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #007bff;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    text-decoration: none;
+                    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+                    transition: background 0.3s ease-in-out, transform 0.2s;
+                  }
+                
+                  .call-icon:hover {
+                    background: #0056b3;
+                    transform: scale(1.1);
+                  }
+                
+                  .call-icon i {
+                    font-size: 1.5rem;
+                    transform: rotate(100deg); /* Ensures the icon is not rotated */
+                  }
+                
+                  /* Popup Styling */
+                  .popup-overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(3px);
+                    justify-content: center;
+                    align-items: center;
+                  }
+                
+                  .popup-box {
+                    background: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    text-align: center;
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+                    width: 90%;
+                    max-width: 350px;
+                  }
+                
+                  .popup-text {
+                    font-size: 1.2rem;
+                    margin-bottom: 15px;
+                    color: #333;
+                  }
+                
+                  .popup-buttons {
+                    display: flex;
+                    justify-content: space-around;
+                  }
+                
+                  .btn {
+                    padding: 10px 20px;
+                    font-size: 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: transform 0.2s;
+                  }
+                
+                  .btn:hover {
+                    transform: scale(1.05);
+                  }
+                
+                  .call-btn {
+                    background: #28a745;
+                    color: white;
+                  }
+                
+                  .call-btn:hover {
+                    background: #218838;
+                  }
+                
+                  .cancel-btn {
+                    background: #dc3545;
+                    color: white;
+                  }
+                
+                  .cancel-btn:hover {
+                    background: #c82333;
+                  }
+                </style>
+                
+                <!-- JavaScript for Popup -->
+                <script>
+                  function showCallPopup() {
+                    document.getElementById("callPopup").style.display = "flex";
+                  }
+                
+                  function closePopup() {
+                    document.getElementById("callPopup").style.display = "none";
+                  }
+                
+                  function makeCall() {
+                    window.location.href = "tel:+919765000429";
+                  }
+                </script>
+                
+                
+                
+                
+                <button id="menu-toggle" style="display: none; color: #ffffff; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-bars" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" style="position: fixed; top: 0; right: 0; height: 100%; background: white; box-shadow: -2px 0 4px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease-in-out; width: 66.666%; display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 900;">Welcome </h2>
+                <button id="close-menu" style="color: #374151; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-times" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+    
+            <div style="padding: 1rem; position: relative;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);">
+                    <!-- <i class="fa fa-phone" style="color: #4B5563; font-size: 1rem;"></i>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                      -->
+    
+                      <img src="imgs/log.jpg" alt="Logo" style="height: 2.5rem; width: auto; ">
+                </button>
+            </div>
+    
+            <nav style="margin-top: 1rem; padding: 1rem;">
+              <ul style="display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 0; list-style: none;">
+                  <li>
+                      <a href="/" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-home" style="margin-right: 8px;"></i>Home
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Shop
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/about.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-info-circle" style="margin-right: 8px;"></i>About
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/contact.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact
+                      </a>
+                  </li>
+                  <a>________________________</a>
+                 <!-- Add Font Awesome CSS in the head of your HTML -->
+    
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li>
+        <a href="./Help.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+            <i class="fas fa-question-circle" style="margin-right: 8px;"></i>
+            Help
+        </a>
+    </li>
+        <li>
+            <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-headset" style="margin-right: 8px;"></i>
+                Support
+            </a>
+        </li>
+        <li>
+            <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-book-open" style="margin-right: 8px;"></i>
+                Read Article
+            </a>
+        </li>
+        <li>
+          <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+              <i class="fas fa-file-contract" style="margin-right: 8px;"></i>
+              Terms and Services
+          </a>
+      </li>
     </ul>
-  </section>
+              </ul>
+          </nav>
+        </div>
+    </header>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const desktopNav = document.getElementById('desktop-nav');
+            const desktopSearch = document.getElementById('desktop-search');
+    
+            // Function to check window width and update display
+            function checkWidth() {
+                if (window.innerWidth >= 640) {
+                    desktopNav.style.display = 'block';
+                    desktopSearch.style.display = 'block';
+                    menuToggle.style.display = 'none';
+                    mobileMenu.style.display = 'none';
+                } else {
+                    desktopNav.style.display = 'none';
+                    desktopSearch.style.display = 'none';
+                    menuToggle.style.display = 'block';
+                    mobileMenu.style.display = 'block';
+                }
+            }
+    
+            // Initial check
+            checkWidth();
+    
+            // Listen for window resize
+            window.addEventListener('resize', checkWidth);
+    
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(0)';
+            });
+    
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(100%)';
+            });
+    
+            // Add hover effect to navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = link.closest('#mobile-menu') ? '#374151' : '#ffffff';
+                });
+            });
+    
+            // Add hover effect to icon links
+            const iconLinks = document.querySelectorAll('a[href="/cart"], a[href="/login"]');
+            iconLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = '#ffffff';
+                });
+            });
+        });
+    </script>
+    <header style="background: linear-gradient(135deg, purple 0%, #66006e 100%); color: white; padding: 20px 0; text-align: center;">
+      <h1 style="margin: 0; font-size: 2.5em;">Contact Us</h1>
+      <p style="margin: 10px 0;">We're Here to Help You</p>
+  </header>
 
-  <script>function toggleMenu() {
-    const navbar = document.getElementById("navbar");
-    navbar.classList.toggle("active");
-  }
+  <!-- Main Content -->
+  <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+      <!-- Contact Info Cards -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 50px;">
+          <!-- Address Card -->
+          <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 300px; text-align: center; transition: transform 0.3s ease;">
+              <i class="fas fa-location-dot" style="font-size: 40px; color: #66006e; margin-bottom: 20px;"></i>
+              <h3 style="color: purple; margin-bottom: 15px;">Our Location</h3>
+              <p style="color: #666; line-height: 1.6;">
+                  Flat No.103, Shri Swami Samarth Vasahat,<br>
+                  Godhani Road, Nagpur,<br>
+                  Maharashtra, India - 440030
+              </p>
+          </div>
+
+          <!-- Phone Card -->
+          <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 300px; text-align: center; transition: transform 0.3s ease;">
+              <i class="fas fa-phone" style="font-size: 40px; color: #66006e; margin-bottom: 20px;"></i>
+              <h3 style="color: purple; margin-bottom: 15px;">Phone</h3>
+              <p style="color: #666; line-height: 1.6;">
+                  Customer Support: +91 9765000429<br>
+                  Business Inquiries: +91 9765000429
+              </p>
+          </div>
+
+          <!-- Email Card -->
+          <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 300px; text-align: center; transition: transform 0.3s ease;">
+              <i class="fas fa-envelope" style="font-size: 40px; color: #66006e; margin-bottom: 20px;"></i>
+              <h3 style="color: purple; margin-bottom: 15px;">Email</h3>
+              <p style="color: #666; line-height: 1.6;">
+                  Customer Support:<br>
+                  support@morrislifesciences.com<br>
+                  Business Inquiries:<br>
+                  info@morrislifesciences.com
+              </p>
+          </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto;">
+          <h2 style="color: purple; text-align: center; margin-bottom: 30px;">Send Us a Message</h2>
+          <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+              <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                  <input type="text" placeholder="Your Name" style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; outline: none; transition: border-color 0.3s ease;" required>
+                  <input type="email" placeholder="Your Email" style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; outline: none; transition: border-color 0.3s ease;" required>
+              </div>
+              <input type="text" placeholder="Subject" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; outline: none; transition: border-color 0.3s ease;" required>
+              <textarea placeholder="Your Message" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; min-height: 150px; outline: none; transition: border-color 0.3s ease;" required></textarea>
+              <button type="submit" style="background: linear-gradient(135deg, purple 0%, #66006e 100%); color: white; padding: 15px 30px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: transform 0.3s ease; align-self: center;">Send Message</button>
+          </form>
+      </div>
+
+      <!-- Map Section -->
+      <!-- <div style="margin-top: 50px; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+          <img src="/api/placeholder/1200/400" alt="Map Location" style="width: 100%; height: 400px; object-fit: cover;">
+      </div> -->
+  </div>
+
+  <script>
+      // Form submission handling
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thank you for your message! We will get back to you soon.');
+          this.reset();
+      });
+
+      // Hover effects for cards
+      document.querySelectorAll('div[style*="background: white"]').forEach(card => {
+          card.addEventListener('mouseover', function() {
+              this.style.transform = 'translateY(-10px)';
+          });
+          card.addEventListener('mouseout', function() {
+              this.style.transform = 'translateY(0)';
+          });
+      });
+
+      // Input focus effects
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+          input.addEventListener('focus', function() {
+              this.style.borderColor = '#66006e';
+          });
+          input.addEventListener('blur', function() {
+              this.style.borderColor = '#e0e0e0';
+          });
+      });
   </script>
-    <section id="SecondCT">
-
-        <h2> </h2>
-
-        <p> </p>
-
-    </section>
-    <section class="section-p1">
-
-        <h2 style="color: orange;">Contact Morris Life Sciences: Your Partner in Health </h2>
-
-        <p>Thank you for choosing Morris Life Sciences as your trusted healthcare provider. We’re here to support you with all your pharmaceutical needs and prioritize your health and well-being. Whether you’re looking for information about our extensive range of products, need assistance with managing your prescriptions, or want to learn more about our health services, our team is always ready to help.
-
-            We value your questions, feedback, and concerns and encourage you to reach out to us. Use the contact details provided below or fill out the form on this page to connect with us. Our knowledgeable staff is available to address your queries and provide the assistance you need.
-            
-            Your journey to better health begins with Morris Life Sciences. Thank you for trusting us as your healthcare partner. We look forward to hearing from you and serving you with excellence, care, and compassion.</p>
-
-    </section>
     <section style="font-family: Arial, sans-serif; line-height: 1.6; text-align: center; margin: 20px auto;">
         <h2 style="color: #2c3e50;">Contact Us</h2>
         <p style="font-size: 18px; font-weight: bold;">Morris Life Sciences</p>
@@ -99,16 +456,16 @@
       <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
       
 
-    <footer class="section-p1">
-        <div class="col">
-            <img width="100px" src="imgs/logo.jpg" class="logo">
-            <h4>Contact</h4>
-            <p><strong>Address:</strong>IDB Bhaban, E/8-A, Dhaka 1207</p>
-            <p><strong>Phone:</strong>+88 01537215709</p>
-            <p><strong>Hours:</strong>10:00AM - 5:00PM Sun-Fri</p>
+      <footer class="section-p1" style="background: #989595; color: white; padding: 40px 20px; text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div class="col" style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+            <img width="100px" src="imgs/logo.png" class="logo">
+            <h4 style="margin: 10px 0;">Contact</h4>
+            <p style="font-size: 14px;"><strong>Address:</strong> 103, Shri Gajanan Residency, Mankapur, Nagpur-440030</p>
+            <p style="font-size: 14px;"><strong>Phone:</strong> +91 9765000429</p>
+            <p style="font-size: 14px;"><strong>Hours:</strong> 10:00AM - 5:00PM Sun-Fri</p>
             <div class="follow">
-                <h4>Follow</h4>
-                <div class="icon">
+                <h4 style="margin: 10px 0;">Follow</h4>
+                <div class="icon" style="display: flex; gap: 10px; font-size: 18px;">
                     <i class="fab fa-facebook-f"></i>
                     <i class="fab fa-twitter"></i>
                     <i class="fab fa-instagram"></i>
@@ -117,36 +474,58 @@
                 </div>
             </div>
         </div>
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About us</a>
-            <a href="#">Delivery information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms $ Conditions</a>
-            <a href="#">Contact us</a>
+        <div class="col" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">About</h4>
+            <a href="about.html" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">About us</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Delivery information</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Privacy Policy</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Terms & Conditions</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Contact us</a>
         </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track my order</a>
-            <a href="#">Help</a>
+        <div class="col" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">My Account</h4>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Sign In</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">View Cart</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">My Wishlist</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Track my order</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Help</a>
         </div>
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App store or Google play</p>
-            <div>
+        <div class="col install" style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">Install App</h4>
+            <p style="font-size: 14px;">From App Store or Google Play</p>
+            <div style="display: flex; gap: 10px;">
                 <img width="100px" src="imgs/features/Google-Play-App.png" alt="">
-                <img src="" alt="">
+                <img width="100px" src="" alt="">
             </div>
-            <p>Secured Payment Gateway</p>
-            <img src="" alt="">
+            <p style="font-size: 14px;">Secured Payment Gateway</p>
+            <img width="100px" src="" alt="">
         </div>
-        <div class="copyright">
-            <p>@ 2023,A2Z Services --Ecommerce Site</p>
+        <div class="copyright" style="width: 100%; text-align: center; margin-top: 20px; font-size: 14px;">
+            <p>&copy; 2024, Morris Life Sciences</p>
         </div>
-    </footer>
+        
+        <!-- Media Query -->
+        <style>
+            @media (max-width: 768px) {
+                .section-p1 { 
+                    display: flex; 
+                    flex-direction: column; 
+                    align-items: center;
+                    text-align: center;
+                    padding: 10px;
+                    background: #111; /* Darker background for mobile */
+                }
+                .col { 
+                    display: none;
+                }
+                .copyright {
+                    display: block;
+                    font-size: 12px; /* Smaller font for mobile */
+                    color: #bbb; /* Light gray text */
+                }
+            }
+        </style>
+      </footer>
     <script src="script.js"></script>
 </body>
 </html>

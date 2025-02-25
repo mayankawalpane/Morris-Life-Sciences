@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaCare Research - Latest Drug Development Studies</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f7fa; line-height: 1.6;">
+    <!-- Progress Bar -->
+    <div id="progressBar" style="position: fixed; top: 0; left: 0; height: 5px; background: #66006e; width: 0; transition: width 0.3s; z-index: 1000;"></div>
+
+    <header style="background-color: #66006e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <!-- Logo -->
+                <a href="/">
+                    <img src="imgs/logo.png" alt="Logo" style="height: 2.5rem; width: auto;">
+                </a>
+    
+                <!-- Navigation -->
+                <nav id="desktop-nav" style="display: none;">
+                    <ul style="display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none;">
+                        <li><a href="/" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Home</a></li>
+                        <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Shop</a></li>
+                        <li><a href="/about.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">About</a></li>
+                        <li><a href="/contact.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+    
+            <!-- Search Field -->
+            <div id="desktop-search" style="display: none; margin: 0 2rem; position: relative; flex: 1; max-width: 24rem;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                    <!-- <i class="fas fa-search" style="color: #4B5563; font-size: 1rem;"></i> -->
+                </button>
+            </div>
+    
+            <!-- Icons -->
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="/Shop.html" style="color: #ffffff; padding: 0.5rem; text-decoration: none; transition: color 0.3s ease;">
+                    <i class="fas fa-shopping-cart" style="font-size: 1.5rem;"></i>
+                </a>
+                <a href="javascript:void(0);" onclick="showCallPopup()" class="call-icon">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  
+                </a>
+               
+                <!-- Call Popup -->
+                <div id="callPopup" class="popup-overlay">
+                  <div class="popup-box">
+                    <p class="popup-text">Call on <strong>+91 9765000429</strong>?</p>
+                    <div class="popup-buttons">
+                      <button onclick="makeCall()" class="btn call-btn">📞 Call</button>
+                      <button onclick="closePopup()" class="btn cancel-btn">❌ Cancel</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- CSS Styling -->
+                <style>
+                  /* Phone Icon Styling */
+                  .call-icon {
+                    color: #ffffff;
+                    padding: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #007bff;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    text-decoration: none;
+                    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+                    transition: background 0.3s ease-in-out, transform 0.2s;
+                  }
+                
+                  .call-icon:hover {
+                    background: #0056b3;
+                    transform: scale(1.1);
+                  }
+                
+                  .call-icon i {
+                    font-size: 1.5rem;
+                    transform: rotate(100deg); /* Ensures the icon is not rotated */
+                  }
+                
+                  /* Popup Styling */
+                  .popup-overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(3px);
+                    justify-content: center;
+                    align-items: center;
+                  }
+                
+                  .popup-box {
+                    background: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    text-align: center;
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+                    width: 90%;
+                    max-width: 350px;
+                  }
+                
+                  .popup-text {
+                    font-size: 1.2rem;
+                    margin-bottom: 15px;
+                    color: #333;
+                  }
+                
+                  .popup-buttons {
+                    display: flex;
+                    justify-content: space-around;
+                  }
+                
+                  .btn {
+                    padding: 10px 20px;
+                    font-size: 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: transform 0.2s;
+                  }
+                
+                  .btn:hover {
+                    transform: scale(1.05);
+                  }
+                
+                  .call-btn {
+                    background: #28a745;
+                    color: white;
+                  }
+                
+                  .call-btn:hover {
+                    background: #218838;
+                  }
+                
+                  .cancel-btn {
+                    background: #dc3545;
+                    color: white;
+                  }
+                
+                  .cancel-btn:hover {
+                    background: #c82333;
+                  }
+                </style>
+                
+                <!-- JavaScript for Popup -->
+                <script>
+                  function showCallPopup() {
+                    document.getElementById("callPopup").style.display = "flex";
+                  }
+                
+                  function closePopup() {
+                    document.getElementById("callPopup").style.display = "none";
+                  }
+                
+                  function makeCall() {
+                    window.location.href = "tel:+919765000429";
+                  }
+                </script>
+                
+                
+                
+                
+                <button id="menu-toggle" style="display: none; color: #ffffff; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-bars" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" style="position: fixed; top: 0; right: 0; height: 100%; background: white; box-shadow: -2px 0 4px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease-in-out; width: 66.666%; display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 900;">Welcome </h2>
+                <button id="close-menu" style="color: #374151; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-times" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+    
+            <div style="padding: 1rem; position: relative;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);">
+                    <!-- <i class="fa fa-phone" style="color: #4B5563; font-size: 1rem;"></i>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                      -->
+    
+                      <img src="imgs/log.jpg" alt="Logo" style="height: 2.5rem; width: auto; ">
+                </button>
+            </div>
+    
+            <nav style="margin-top: 1rem; padding: 1rem;">
+              <ul style="display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 0; list-style: none;">
+                  <li>
+                      <a href="/" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-home" style="margin-right: 8px;"></i>Home
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Shop
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/about.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-info-circle" style="margin-right: 8px;"></i>About
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/contact.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact
+                      </a>
+                  </li>
+                  <a>________________________</a>
+                 <!-- Add Font Awesome CSS in the head of your HTML -->
+    
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li>
+        <a href="./Help.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+            <i class="fas fa-question-circle" style="margin-right: 8px;"></i>
+            Help
+        </a>
+    </li>
+        <li>
+            <a href="Support.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-headset" style="margin-right: 8px;"></i>
+                Support
+            </a>
+        </li>
+        <li>
+            <a href="/Artical.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-book-open" style="margin-right: 8px;"></i>
+                Read Article
+            </a>
+        </li>
+        <li>
+          <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+              <i class="fas fa-file-contract" style="margin-right: 8px;"></i>
+              Terms and Services
+          </a>
+      </li>
+    </ul>
+              </ul>
+          </nav>
+        </div>
+    </header>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const desktopNav = document.getElementById('desktop-nav');
+            const desktopSearch = document.getElementById('desktop-search');
+    
+            // Function to check window width and update display
+            function checkWidth() {
+                if (window.innerWidth >= 640) {
+                    desktopNav.style.display = 'block';
+                    desktopSearch.style.display = 'block';
+                    menuToggle.style.display = 'none';
+                    mobileMenu.style.display = 'none';
+                } else {
+                    desktopNav.style.display = 'none';
+                    desktopSearch.style.display = 'none';
+                    menuToggle.style.display = 'block';
+                    mobileMenu.style.display = 'block';
+                }
+            }
+    
+            // Initial check
+            checkWidth();
+    
+            // Listen for window resize
+            window.addEventListener('resize', checkWidth);
+    
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(0)';
+            });
+    
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(100%)';
+            });
+    
+            // Add hover effect to navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = link.closest('#mobile-menu') ? '#374151' : '#ffffff';
+                });
+            });
+    
+            // Add hover effect to icon links
+            const iconLinks = document.querySelectorAll('a[href="/cart"], a[href="/login"]');
+            iconLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = '#ffffff';
+                });
+            });
+        });
+    </script>
+    
+
+    <main style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+        <!-- FDA Approval Banner -->
+        <div style="background: #e8f5e9; color: #2e7d32; padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center;">
+            <i class="fas fa-certificate" style="margin-right: 10px;"></i>
+            <span>FDA Fast Track Designation Received</span>
+        </div>
+
+        <!-- Article Image -->
+        <div style="position: relative; margin-bottom: 30px; border-radius: 10px; overflow: hidden;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw8-iQgy702aLeM1b3QnEkaNhdy0s3SkV8fnO02_xtcpcx4eEOC7t_s_Xqlm421HtUgPA&usqp=CAU" alt="Clinical Trial Research" style="width: 100%; height: auto; transition: transform 0.3s;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white;">
+                <p style="margin: 0;">Advanced clinical trials show promising results in treating severe arthritis with minimal side effects</p>
+            </div>
+        </div>
+
+        <!-- Article Content -->
+        <article style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <!-- Table of Contents -->
+            <div id="tableOfContents" style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 30px;">
+                <h3 style="color: #66006e; margin-top: 0;">Article Contents</h3>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li style="margin: 10px 0;"><a href="#compound" style="color: #66006e; text-decoration: none;">1. Novel Compound Development</a></li>
+                    <li style="margin: 10px 0;"><a href="#trials" style="color: #66006e; text-decoration: none;">2. Clinical Trials</a></li>
+                    <li style="margin: 10px 0;"><a href="#results" style="color: #66006e; text-decoration: none;">3. Trial Results</a></li>
+                    <li style="margin: 10px 0;"><a href="#safety" style="color: #66006e; text-decoration: none;">4. Safety Profile</a></li>
+                    <li style="margin: 10px 0;"><a href="#availability" style="color: #66006e; text-decoration: none;">5. Market Availability</a></li>
+                </ul>
+            </div>
+
+            <section id="compound">
+                <h2 style="color: #66006e;">Novel Compound Development</h2>
+                <p class="animate-text" style="opacity: 0; transform: translateY(20px); transition: all 0.5s ease;">Our research team has developed a groundbreaking compound, ARX-2025, that specifically targets inflammatory pathways associated with severe arthritis. This novel approach represents a significant advancement in the field of rheumatology pharmaceuticals.</p>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-left: 4px solid #66006e; margin: 20px 0;">
+                    <strong>Compound Highlights:</strong> ARX-2025 demonstrates selective binding to inflammatory mediators with 95% specificity.
+                </div>
+            </section>
+
+            <section id="trials">
+                <h2 style="color: #66006e;">Clinical Trials</h2>
+                <p class="animate-text" style="opacity: 0; transform: translateY(20px); transition: all 0.5s ease;">The Phase III clinical trial included 2,500 patients across 50 medical centers worldwide. The study design followed rigorous double-blind, placebo-controlled protocols over 24 months.</p>
+                
+                <div style="background: white; border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin: 20px 0;">
+                    <h4 style="color: #66006e; margin-top: 0;">Trial Demographics:</h4>
+                    <ul>
+                        <li>Patient Age Range: 30-75 years</li>
+                        <li>Disease Duration: 2-20 years</li>
+                        <li>Previous Treatment History: Documented</li>
+                        <li>Severity Levels: Moderate to Severe</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="results">
+                <h2 style="color: #66006e;">Trial Results</h2>
+                <p class="animate-text" style="opacity: 0; transform: translateY(20px); transition: all 0.5s ease;">The clinical trials yielded exceptional results across multiple endpoints:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div class="result-card" style="background: #f8f9fa; padding: 20px; border-radius: 5px; transition: transform 0.3s;">
+                        <h4 style="color: #66006e; margin-top: 0;">Pain Reduction</h4>
+                        <p>87% reduction in reported pain levels</p>
+                    </div>
+                    <div class="result-card" style="background: #f8f9fa; padding: 20px; border-radius: 5px; transition: transform 0.3s;">
+                        <h4 style="color: #66006e; margin-top: 0;">Joint Mobility</h4>
+                        <p>75% improvement in joint flexibility</p>
+                    </div>
+                    <div class="result-card" style="background: #f8f9fa; padding: 20px; border-radius: 5px; transition: transform 0.3s;">
+                        <h4 style="color: #66006e; margin-top: 0;">Quality of Life</h4>
+                        <p>82% enhancement in daily activities</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="safety">
+                <h2 style="color: #66006e;">Safety Profile</h2>
+                <p class="animate-text" style="opacity: 0; transform: translateY(20px); transition: all 0.5s ease;">ARX-2025 demonstrated an excellent safety profile with minimal adverse effects:</p>
+                
+                <div style="margin: 20px 0;">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <i class="fas fa-shield-alt" style="color: #66006e; font-size: 1.5em; margin-right: 10px;"></i>
+                        <span>Low incidence of gastrointestinal effects (< 3%)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <i class="fas fa-shield-alt" style="color: #66006e; font-size: 1.5em; margin-right: 10px;"></i>
+                        <span>No significant drug interactions observed</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <i class="fas fa-shield-alt" style="color: #66006e; font-size: 1.5em; margin-right: 10px;"></i>
+                        <span>Suitable for long-term use</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="availability">
+                <h2 style="color: #66006e;">Market Availability</h2>
+                <p class="animate-text" style="opacity: 0; transform: translateY(20px); transition: all 0.5s ease;">Following FDA fast-track designation, ARX-2025 is expected to be available in select markets by Q4 2025. Initial distribution will focus on specialized rheumatology centers and major hospital networks.</p>
+            </section>
+
+            <!-- Research Team -->
+            <div style="margin-top: 40px; padding-top: 40px; border-top: 1px solid #ddd;">
+                <div style="display: flex; align-items: center;">f
+                    <img src="https://scontent.fpnq2-2.fna.fbcdn.net/v/t39.30808-1/356258657_6242775422436584_7976579648160432883_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=106&ccb=1-7&_nc_sid=e99d92&_nc_ohc=YWX6VSYduhIQ7kNvgGl1eUr&_nc_zt=24&_nc_ht=scontent.fpnq2-2.fna&_nc_gid=AYhNvEd6Lczee_ncdxWwJlf&oh=00_AYBwEVjg-5tklHBAmi0SfTMOi5DJt1rT_C9Wxmqe_Pizow&oe=67BF90CA" alt="Research Team" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px;">
+                    <div>
+                        <h3 style="color: #66006e; margin: 0;">Lead Research Team</h3>
+                        <p style="margin: 5px 0;">PARAG PRAKASH VAIRAGADE, NILESH KUMAR AWALPANE, ARUN KISANLAL</p>
+                        <div style="margin-top: 10px;">
+                            <a href="#" style="color: #66006e; margin-right: 15px;"><i class="fas fa-globe"></i> Research Portal</a>
+                            <a href="#" style="color: #66006e;"><i class="fas fa-file-medical"></i> Clinical Data</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Notice -->
+            <div style="margin-top: 20px; padding: 15px; background: #fff3e0; border-radius: 5px; font-size: 0.9em;">
+                <i class="fas fa-info-circle" style="color: #66006e; margin-right: 10px;"></i>
+                This article is intended for healthcare professionals. Please consult prescribing information for complete details.
+            </div>
+        </article>
+
+        <!-- Share Buttons -->
+        <div style="position: fixed; left: 20px; top: 50%; transform: translateY(-50%); display: none;" id="shareButtons">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="share-btn" style="background: #66006e; color: white; border: none; padding: 10px; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="share-btn" style="background: #66006e; color: white; border: none; padding: 10px; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                    <i class="fas fa-print"></i>
+                </button>
+                <button class="share-btn" style="background: #66006e; color: white; border: none; padding: 10px; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Progress bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+
+            // Show/hide share buttons
+            if (winScroll > 300) {
+                document.getElementById("shareButtons").style.display = "block";
+            } else {
+                document.getElementById("shareButtons").style.display = "none";
+            }
+        };
+
+        // Animate text on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-text').forEach(text => {
+            observer.observe(text);
+        });
+
+        // Hover effects for result cards
+        document.querySelectorAll('.result-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = 'none';
+            });
+        });
+
+        // Smooth scroll for table of contents
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

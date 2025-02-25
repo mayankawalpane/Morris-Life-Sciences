@@ -10,88 +10,675 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section id="header">
-        <a href="#"><img width="100px" src="imgs/logo.png" alt=""></a>
-        <div id="menu-toggle" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul id="navbar">
-          <li><a class="active" href="index.html">Home</a></li>
-          <li><a href="Shop.html">Shop</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <!-- <li><a href="Medicines.html">Medicines</a></li> -->
-          <li><a href="AdminPanel.html">Admin</a></li>
-          <li><a href="cart.html"><img width="20px" src="imgs/shopping-cart.png" alt=""></a></li>
-        </ul>
-      </section>
+    <header style="background-color: #66006e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <!-- Logo -->
+                <a href="/">
+                    <img src="imgs/logo.png" alt="Logo" style="height: 2.5rem; width: auto;">
+                </a>
     
-      <script>function toggleMenu() {
-        const navbar = document.getElementById("navbar");
-        navbar.classList.toggle("active");
+                <!-- Navigation -->
+                <nav id="desktop-nav" style="display: none;">
+                    <ul style="display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none;">
+                        <li><a href="/" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Home</a></li>
+                        <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Shop</a></li>
+                        <li><a href="/about.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">About</a></li>
+                        <li><a href="/contact.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+    
+            <!-- Search Field -->
+            <div id="desktop-search" style="display: none; margin: 0 2rem; position: relative; flex: 1; max-width: 24rem;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                    <!-- <i class="fas fa-search" style="color: #4B5563; font-size: 1rem;"></i> -->
+                </button>
+            </div>
+    
+            <!-- Icons -->
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="/Shop.html" style="color: #ffffff; padding: 0.5rem; text-decoration: none; transition: color 0.3s ease;">
+                    <i class="fas fa-shopping-cart" style="font-size: 1.5rem;"></i>
+                </a>
+                <a href="javascript:void(0);" onclick="showCallPopup()" class="call-icon">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  
+                </a>
+               
+                <!-- Call Popup -->
+                <div id="callPopup" class="popup-overlay">
+                  <div class="popup-box">
+                    <p class="popup-text">Call on <strong>+91 9765000429</strong>?</p>
+                    <div class="popup-buttons">
+                      <button onclick="makeCall()" class="btn call-btn">📞 Call</button>
+                      <button onclick="closePopup()" class="btn cancel-btn">❌ Cancel</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- CSS Styling -->
+                <style>
+                  /* Phone Icon Styling */
+                  .call-icon {
+                    color: #ffffff;
+                    padding: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #007bff;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    text-decoration: none;
+                    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+                    transition: background 0.3s ease-in-out, transform 0.2s;
+                  }
+                
+                  .call-icon:hover {
+                    background: #0056b3;
+                    transform: scale(1.1);
+                  }
+                
+                  .call-icon i {
+                    font-size: 1.5rem;
+                    transform: rotate(100deg); /* Ensures the icon is not rotated */
+                  }
+                
+                  /* Popup Styling */
+                  .popup-overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(3px);
+                    justify-content: center;
+                    align-items: center;
+                  }
+                
+                  .popup-box {
+                    background: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    text-align: center;
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+                    width: 90%;
+                    max-width: 350px;
+                  }
+                
+                  .popup-text {
+                    font-size: 1.2rem;
+                    margin-bottom: 15px;
+                    color: #333;
+                  }
+                
+                  .popup-buttons {
+                    display: flex;
+                    justify-content: space-around;
+                  }
+                
+                  .btn {
+                    padding: 10px 20px;
+                    font-size: 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: transform 0.2s;
+                  }
+                
+                  .btn:hover {
+                    transform: scale(1.05);
+                  }
+                
+                  .call-btn {
+                    background: #28a745;
+                    color: white;
+                  }
+                
+                  .call-btn:hover {
+                    background: #218838;
+                  }
+                
+                  .cancel-btn {
+                    background: #dc3545;
+                    color: white;
+                  }
+                
+                  .cancel-btn:hover {
+                    background: #c82333;
+                  }
+                </style>
+                
+                <!-- JavaScript for Popup -->
+                <script>
+                  function showCallPopup() {
+                    document.getElementById("callPopup").style.display = "flex";
+                  }
+                
+                  function closePopup() {
+                    document.getElementById("callPopup").style.display = "none";
+                  }
+                
+                  function makeCall() {
+                    window.location.href = "tel:+919765000429";
+                  }
+                </script>
+                
+                
+                
+                
+                <button id="menu-toggle" style="display: none; color: #ffffff; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-bars" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" style="position: fixed; top: 0; right: 0; height: 100%; background: white; box-shadow: -2px 0 4px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease-in-out; width: 66.666%; display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 900;">Welcome </h2>
+                <button id="close-menu" style="color: #374151; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-times" style="font-size: 1.25rem;"></i>
+                </button>
+            </div>
+    
+            <div style="padding: 1rem; position: relative;">
+                <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+                <button type="submit" style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);">
+                    <!-- <i class="fa fa-phone" style="color: #4B5563; font-size: 1rem;"></i>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                      -->
+    
+                      <img src="imgs/log.jpg" alt="Logo" style="height: 2.5rem; width: auto; ">
+                </button>
+            </div>
+    
+            <nav style="margin-top: 1rem; padding: 1rem;">
+              <ul style="display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 0; list-style: none;">
+                  <li>
+                      <a href="/" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-home" style="margin-right: 8px;"></i>Home
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Shop
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/about.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-info-circle" style="margin-right: 8px;"></i>About
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/contact.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                          <i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact
+                      </a>
+                  </li>
+                  <a>________________________</a>
+                 <!-- Add Font Awesome CSS in the head of your HTML -->
+    
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li>
+        <a href="./Help.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+            <i class="fas fa-question-circle" style="margin-right: 8px;"></i>
+            Help
+        </a>
+    </li>
+        <li>
+            <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-headset" style="margin-right: 8px;"></i>
+                Support
+            </a>
+        </li>
+        <li>
+            <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+                <i class="fas fa-book-open" style="margin-right: 8px;"></i>
+                Read Article
+            </a>
+        </li>
+        <li>
+          <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+              <i class="fas fa-file-contract" style="margin-right: 8px;"></i>
+              Terms and Services
+          </a>
+      </li>
+    </ul>
+              </ul>
+          </nav>
+        </div>
+    </header>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const desktopNav = document.getElementById('desktop-nav');
+            const desktopSearch = document.getElementById('desktop-search');
+    
+            // Function to check window width and update display
+            function checkWidth() {
+                if (window.innerWidth >= 640) {
+                    desktopNav.style.display = 'block';
+                    desktopSearch.style.display = 'block';
+                    menuToggle.style.display = 'none';
+                    mobileMenu.style.display = 'none';
+                } else {
+                    desktopNav.style.display = 'none';
+                    desktopSearch.style.display = 'none';
+                    menuToggle.style.display = 'block';
+                    mobileMenu.style.display = 'block';
+                }
+            }
+    
+            // Initial check
+            checkWidth();
+    
+            // Listen for window resize
+            window.addEventListener('resize', checkWidth);
+    
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(0)';
+            });
+    
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.style.transform = 'translateX(100%)';
+            });
+    
+            // Add hover effect to navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = link.closest('#mobile-menu') ? '#374151' : '#ffffff';
+                });
+            });
+    
+            // Add hover effect to icon links
+            const iconLinks = document.querySelectorAll('a[href="/cart"], a[href="/login"]');
+            iconLinks.forEach(link => {
+                link.addEventListener('mouseover', function() {
+                    this.style.color = '#00B4D8';
+                });
+    
+                link.addEventListener('mouseout', function() {
+                    this.style.color = '#ffffff';
+                });
+            });
+        });
+    </script> 
+
+
+    
+
+    <style>
+      /* Previous styles remain the same */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Arial', sans-serif;
       }
-      </script>
 
+      body {
+          background-color: white;
+          color: #333;
+          line-height: 1.6;
+      }
 
-    <section id="SecondAB">
+      .header {
+          background-color: #66006e;
+          color: white;
+          padding: 100px 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
 
-        <h2> </h2>
+      .header h1 {
+          font-size: 3.5em;
+          margin-bottom: 20px;
+      }
 
-        <p> </p>
+      .header p {
+          font-size: 1.2em;
+          max-width: 800px;
+          margin: 0 auto;
+      }
 
-    </section>
+      .wave {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100px;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+          background-size: cover;
+      }
 
-    <section id="">
+      .section {
+          padding: 80px 20px;
+          max-width: 1200px;
+          margin: 0 auto;
+      }
 
-        <h1 style="color: orange;" class="section-p1";>Life Sciences</h1>
+      /* FAB Styles */
+      .fab-container {
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          z-index: 999;
+      }
 
-        <p class="section-p1">
-            Welcome to Morris Life Sciences, your trusted healthcare partner dedicated to providing quality pharmaceutical products and personalized services. At Morris Life Sciences, we understand the significance of health and well-being, and our mission is to deliver accessible, affordable, and dependable healthcare solutions to our community.
+      .fab-main {
+          width: 60px;
+          height: 60px;
+          background: #66006e;
+          border-radius: 50%;
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+          color: white;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
 
-With a team of experienced pharmacists and healthcare professionals, we strive to offer a comprehensive range of prescription medications, over-the-counter products, and essential health items, ensuring that our customers have convenient access to the medications and services they need.
+      .fab-main:hover {
+          transform: scale(1.1);
+          background: #7a0083;
+      }
 
-Our commitment to excellence extends beyond just providing medications. We prioritize your health and safety by offering expert advice, medication counseling, and tailored health services designed to meet your unique needs. Whether you have questions about your prescriptions, need assistance managing a chronic condition, or are searching for wellness products, our knowledgeable staff is here to support you at every step.
+      .fab-buttons {
+          position: absolute;
+          bottom: 70px;
+          right: 0;
+          display: none;
+          flex-direction: column;
+          gap: 15px;
+          transition: all 0.3s ease;
+      }
 
-At Morris Life Sciences, we also take pride in giving back to the community that places its trust in us for healthcare solutions. We actively participate in community outreach programs, health awareness campaigns, and initiatives aimed at fostering a healthier lifestyle.
+      .fab-buttons.active {
+          display: flex;
+      }
 
-Thank you for choosing Morris Life Sciences as your healthcare partner. We are committed to making a positive difference in your life and the lives of our community members. Your health is our priority, and we look forward to serving you with compassion, expertise, and care.
+      .fab-item {
+          width: 45px;
+          height: 45px;
+          background: #66006e;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          text-decoration: none;
+          font-size: 18px;
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+          transition: all 0.3s ease;
+          position: relative;
+      }
 
-Feel free to let me know if you’d like any further refinements or customizations to reflect your pharmacy’s unique values and goals!
+      .fab-item:hover {
+          transform: scale(1.1);
+          background: #7a0083;
+      }
 
+      .fab-tooltip {
+          position: absolute;
+          right: 60px;
+          background: #333;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 4px;
+          font-size: 14px;
+          white-space: nowrap;
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.3s ease;
+      }
 
+      .fab-item:hover .fab-tooltip {
+          opacity: 1;
+          right: 55px;
+      }
 
+      /* Previous styles continue... */
+      .mission-vision {
+          display: flex;
+          gap: 40px;
+          margin-top: 40px;
+      }
 
+      .mission, .vision {
+          flex: 1;
+          padding: 30px;
+          border-radius: 10px;
+          background: white;
+          box-shadow: 0 5px 15px rgba(102, 0, 110, 0.1);
+      }
 
+      .product-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 30px;
+          margin-top: 40px;
+      }
 
+      .product-card {
+          background: white;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px rgba(102, 0, 110, 0.1);
+          transition: transform 0.3s ease;
+      }
 
-        </p>
+      .product-card:hover {
+          transform: translateY(-5px);
+      }
 
-    </section>
+      .product-card img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+      }
 
+      .product-info {
+          padding: 20px;
+      }
 
-    <section id="newsletter" class="section-p1">
-        <div class="newstext">
-            <h4>Sign up for Medicin Update</h4>
-            <p>Get email updates about our Pharmacy<p>
-        </div>
-        <div class="form">
-            <input type="text" placeholder="Your emal Adress">
-            <button class="normal">Sign up</button>
-        </div>
-    </section>
+      h2 {
+          color: #66006e;
+          margin-bottom: 30px;
+          font-size: 2.5em;
+          text-align: center;
+      }
 
-    <footer class="section-p1">
-        <div class="col">
-            <img width="100px" src="imgs/logo.jpg" class="logo">
-            <h4>Contact</h4>
-            <p><strong>Address:</strong>IDB Bhaban, E/8-A, Dhaka 1207</p>
-            <p><strong>Phone:</strong>+88 01537215709</p>
-            <p><strong>Hours:</strong>10:00AM - 5:00PM Sun-Fri</p>
+      .stats {
+          display: flex;
+          justify-content: space-around;
+          margin: 60px 0;
+          flex-wrap: wrap;
+      }
+
+      .stat-item {
+          text-align: center;
+          padding: 20px;
+      }
+
+      .stat-number {
+          font-size: 2.5em;
+          color: #66006e;
+          font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+          .mission-vision {
+              flex-direction: column;
+          }
+          
+          .header h1 {
+              font-size: 2.5em;
+          }
+      }
+  </style>
+</head>
+<body>
+  <!-- Previous content remains the same -->
+  <div class="header">
+      <h1 data-aos="fade-down">Morris Life Sciences</h1>
+      <p data-aos="fade-up">Advancing Healthcare Through Innovation</p>
+      <div class="wave"></div>
+  </div>
+
+  <div class="section">
+      <h2 data-aos="fade-up">Our Legacy of Excellence</h2>
+      <p data-aos="fade-up">Morris Life Sciences has been at the forefront of pharmaceutical innovation for over two decades. Founded in 2001, we have grown from a small research facility to a global leader in pharmaceutical manufacturing and research. Our state-of-the-art facilities, spread across multiple locations, are equipped with cutting-edge technology and staffed by some of the industry's most talented professionals.</p>
+      
+      <div class="stats">
+          <div class="stat-item" data-aos="fade-up">
+              <div class="stat-number">20+</div>
+              <div>Years of Excellence</div>
+          </div>
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+              <div class="stat-number">500+</div>
+              <div>Products</div>
+          </div>
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="stat-number">50+</div>
+              <div>Countries Served</div>
+          </div>
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+              <div class="stat-number">1000+</div>
+              <div>Team Members</div>
+          </div>
+      </div>
+
+      <div class="mission-vision">
+          <div class="mission" data-aos="fade-right">
+              <h3>Our Mission</h3>
+              <p>To enhance global healthcare through innovative pharmaceutical solutions, maintaining the highest standards of quality and safety while ensuring accessibility to all.</p>
+          </div>
+          <div class="vision" data-aos="fade-left">
+              <h3>Our Vision</h3>
+              <p>To be the world's most trusted partner in delivering breakthrough pharmaceutical solutions that transform patient care and improve quality of life.</p>
+          </div>
+      </div>
+  </div>
+
+  <div class="section">
+      <h2 data-aos="fade-up">Featured Products</h2>
+      <div class="product-grid">
+          <div class="product-card" data-aos="fade-up">
+              <img src="imgs/Images/IMG_8701.JPG" alt="Pharmaceutical Product 1">
+              <div class="product-info">
+                  <h3>CardioHealth Plus</h3>
+                  <p>Advanced cardiovascular support supplement</p>
+              </div>
+          </div>
+          <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+              <img src="imgs/Images/IMG_8707.JPG" alt="Pharmaceutical Product 2">
+              <div class="product-info">
+                  <h3>ImmunoBoost Pro</h3>
+                  <p>Immune system enhancement formula</p>
+              </div>
+          </div>
+          <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+              <img src="imgs/Images/IMG_8715.JPG" alt="Pharmaceutical Product 3">
+              <div class="product-info">
+                  <h3>NeuroVital Max</h3>
+                  <p>Cognitive function support supplement</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="section">
+      <h2 data-aos="fade-up">Our Commitment</h2>
+      <p data-aos="fade-up">At Morris Life Sciences, we are committed to pushing the boundaries of pharmaceutical research and development. Our dedicated team of scientists and researchers works tirelessly to develop innovative solutions for complex medical challenges. We maintain the highest standards of quality control and regulatory compliance across our manufacturing facilities.</p>
+      <p data-aos="fade-up" style="margin-top: 20px">Our extensive portfolio includes treatments for cardiovascular diseases, neurological disorders, immunological conditions, and more. We invest heavily in research and development, collaborating with leading medical institutions and healthcare professionals worldwide to advance medical science and improve patient outcomes.</p>
+  </div>
+
+  <!-- FAB Menu -->
+  <div class="fab-container">
+      <div class="fab-buttons">
+          <a href="#" class="fab-item" onclick="scrollToTop()">
+              <i class="fas fa-arrow-up"></i>
+              <span class="fab-tooltip">Back to Top</span>
+          </a>
+          <a href="#" class="fab-item" onclick="location.href='tel:+91 9765000429'">
+              <i class="fas fa-phone"></i>
+              <span class="fab-tooltip">Contact Us</span>
+          </a>
+          <a href="#" class="fab-item" onclick="location.href='mailto:info@morrislife.com'">
+              <i class="fas fa-envelope"></i>
+              <span class="fab-tooltip">Email Us</span>
+          </a>
+      </div>
+      <div class="fab-main" onclick="toggleFab()">
+          <i class="fas fa-plus"></i>
+      </div>
+  </div>
+
+  <script>
+      // Initialize AOS
+      AOS.init({
+          duration: 1000,
+          once: true,
+          offset: 100
+      });
+
+      // FAB functionality
+      function toggleFab() {
+          const buttons = document.querySelector('.fab-buttons');
+          buttons.classList.toggle('active');
+          const mainButton = document.querySelector('.fab-main i');
+          mainButton.classList.toggle('fa-plus');
+          mainButton.classList.toggle('fa-times');
+      }
+
+      function scrollToTop() {
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
+      }
+
+      // Close FAB menu when clicking outside
+      document.addEventListener('click', function(event) {
+          const fabContainer = document.querySelector('.fab-container');
+          const fabButtons = document.querySelector('.fab-buttons');
+          const mainButton = document.querySelector('.fab-main i');
+          
+          if (!fabContainer.contains(event.target) && fabButtons.classList.contains('active')) {
+              fabButtons.classList.remove('active');
+              mainButton.classList.add('fa-plus');
+              mainButton.classList.remove('fa-times');
+          }
+      });
+  </script>
+
+      <footer class="section-p1" style="background: #989595; color: white; padding: 40px 20px; text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div class="col" style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+            <img width="100px" src="imgs/logo.png" class="logo">
+            <h4 style="margin: 10px 0;">Contact</h4>
+            <p style="font-size: 14px;"><strong>Address:</strong> 103, Shri Gajanan Residency, Mankapur, Nagpur-440030</p>
+            <p style="font-size: 14px;"><strong>Phone:</strong> +91 9765000429</p>
+            <p style="font-size: 14px;"><strong>Hours:</strong> 10:00AM - 5:00PM Sun-Fri</p>
             <div class="follow">
-                <h4>Follow</h4>
-                <div class="icon">
+                <h4 style="margin: 10px 0;">Follow</h4>
+                <div class="icon" style="display: flex; gap: 10px; font-size: 18px;">
                     <i class="fab fa-facebook-f"></i>
                     <i class="fab fa-twitter"></i>
                     <i class="fab fa-instagram"></i>
@@ -100,36 +687,58 @@ Feel free to let me know if you’d like any further refinements or customizatio
                 </div>
             </div>
         </div>
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About us</a>
-            <a href="#">Delivery information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms $ Conditions</a>
-            <a href="#">Contact us</a>
+        <div class="col" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">About</h4>
+            <a href="about.html" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">About us</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Delivery information</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Privacy Policy</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Terms & Conditions</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Contact us</a>
         </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track my order</a>
-            <a href="#">Help</a>
+        <div class="col" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">My Account</h4>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Sign In</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">View Cart</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">My Wishlist</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Track my order</a>
+            <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Help</a>
         </div>
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App store or Google play</p>
-            <div>
+        <div class="col install" style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">Install App</h4>
+            <p style="font-size: 14px;">From App Store or Google Play</p>
+            <div style="display: flex; gap: 10px;">
                 <img width="100px" src="imgs/features/Google-Play-App.png" alt="">
-                <img src="" alt="">
+                <img width="100px" src="" alt="">
             </div>
-            <p>Secured Payment Gateway</p>
-            <img src="" alt="">
+            <p style="font-size: 14px;">Secured Payment Gateway</p>
+            <img width="100px" src="" alt="">
         </div>
-        <div class="copyright">
-            <p>@ 2023,A2Z Services --Ecommerce Site</p>
+        <div class="copyright" style="width: 100%; text-align: center; margin-top: 20px; font-size: 14px;">
+            <p>&copy; 2024, Morris Life Sciences</p>
         </div>
-    </footer>
+        
+        <!-- Media Query -->
+        <style>
+            @media (max-width: 768px) {
+                .section-p1 { 
+                    display: flex; 
+                    flex-direction: column; 
+                    align-items: center;
+                    text-align: center;
+                    padding: 10px;
+                    background: #111; /* Darker background for mobile */
+                }
+                .col { 
+                    display: none;
+                }
+                .copyright {
+                    display: block;
+                    font-size: 12px; /* Smaller font for mobile */
+                    color: #bbb; /* Light gray text */
+                }
+            }
+        </style>
+      </footer>
     <script src="script.js"></script>
 </body>
 </html>

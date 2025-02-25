@@ -6,170 +6,1167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morris Life Sciences Pvt.Ltd</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
+<!-- Add this to the head section of your HTML files -->
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section id="header">
-        <a href="#"><img width="100px" src="imgs/logo.png" alt=""></a>
-        <div id="menu-toggle" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul id="navbar">
-          <li><a class="active" href="index.html">Home</a></li>
-          <li><a href="Shop.html">Shop</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <!-- <li><a href="Medicines.html">Medicines</a></li> -->
-          <li><a href="AdminPanel.html">Admin</a></li>
-          <li><a href="cart.html"><img width="20px" src="imgs/shopping-cart.png" alt=""></a></li>
-        </ul>
-      </section>
-    
-      <script>function toggleMenu() {
-        const navbar = document.getElementById("navbar");
-        navbar.classList.toggle("active");
-      }
-      </script>
+  <header style="background-color: #66006e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <!-- Logo -->
+            <a href="/">
+                <img src="imgs/logo.png" alt="Logo" style="height: 2.5rem; width: auto;">
+            </a>
 
-    <section id="Second">
-       
-        <h2> </h2>
-      
-        <p> </p>
-       
-    </section>
+            <!-- Navigation -->
+            <nav id="desktop-nav" style="display: none;">
+                <ul style="display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none;">
+                    <li><a href="/" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Home</a></li>
+                    <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Shop</a></li>
+                    <li><a href="/about.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">About</a></li>
+                    <li><a href="/contact.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Search Field -->
+        <div id="desktop-search" style="display: none; margin: 0 2rem; position: relative; flex: 1; max-width: 24rem;">
+            <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+            <button type="submit" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                <!-- <i class="fas fa-search" style="color: #4B5563; font-size: 1rem;"></i> -->
+            </button>
+        </div>
+
+        <!-- Icons -->
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="/Shop.html" style="color: #ffffff; padding: 0.5rem; text-decoration: none; transition: color 0.3s ease;">
+                <i class="fas fa-shopping-cart" style="font-size: 1.5rem;"></i>
+            </a>
+            <a href="javascript:void(0);" onclick="showCallPopup()" class="call-icon">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              
+            </a>
+           
+            <!-- Call Popup -->
+            <div id="callPopup" class="popup-overlay">
+              <div class="popup-box">
+                <p class="popup-text">Call on <strong>+91 9765000429</strong>?</p>
+                <div class="popup-buttons">
+                  <button onclick="makeCall()" class="btn call-btn">📞 Call</button>
+                  <button onclick="closePopup()" class="btn cancel-btn">❌ Cancel</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- CSS Styling -->
+            <style>
+              /* Phone Icon Styling */
+              .call-icon {
+                color: #ffffff;
+                padding: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #007bff;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                text-decoration: none;
+                box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+                transition: background 0.3s ease-in-out, transform 0.2s;
+              }
+            
+              .call-icon:hover {
+                background: #0056b3;
+                transform: scale(1.1);
+              }
+            
+              .call-icon i {
+                font-size: 1.5rem;
+                transform: rotate(100deg); /* Ensures the icon is not rotated */
+              }
+            
+              /* Popup Styling */
+              .popup-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(3px);
+                justify-content: center;
+                align-items: center;
+              }
+            
+              .popup-box {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+                width: 90%;
+                max-width: 350px;
+              }
+            
+              .popup-text {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+                color: #333;
+              }
+            
+              .popup-buttons {
+                display: flex;
+                justify-content: space-around;
+              }
+            
+              .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: transform 0.2s;
+              }
+            
+              .btn:hover {
+                transform: scale(1.05);
+              }
+            
+              .call-btn {
+                background: #28a745;
+                color: white;
+              }
+            
+              .call-btn:hover {
+                background: #218838;
+              }
+            
+              .cancel-btn {
+                background: #dc3545;
+                color: white;
+              }
+            
+              .cancel-btn:hover {
+                background: #c82333;
+              }
+            </style>
+            
+            <!-- JavaScript for Popup -->
+            <script>
+              function showCallPopup() {
+                document.getElementById("callPopup").style.display = "flex";
+              }
+            
+              function closePopup() {
+                document.getElementById("callPopup").style.display = "none";
+              }
+            
+              function makeCall() {
+                window.location.href = "tel:+919765000429";
+              }
+            </script>
+            
+            
+            
+            
+            <button id="menu-toggle" style="display: none; color: #ffffff; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                <i class="fas fa-bars" style="font-size: 1.25rem;"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" style="position: fixed; top: 0; right: 0; height: 100%; background: white; box-shadow: -2px 0 4px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease-in-out; width: 66.666%; display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+            <h2 style="font-size: 1.5rem; font-weight: 900;">Welcome </h2>
+            <button id="close-menu" style="color: #374151; padding: 0.5rem; background: none; border: none; cursor: pointer;">
+                <i class="fas fa-times" style="font-size: 1.25rem;"></i>
+            </button>
+        </div>
+
+        <div style="padding: 1rem; position: relative;">
+            <!-- <input type="search" placeholder="Search" style="background: white; height: 2.5rem; padding: 0 2.5rem 0 1.25rem; border-radius: 9999px; font-size: 0.875rem; border: 1px solid #D1D5DB; width: 100%;"> -->
+            <button type="submit" style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);">
+                <!-- <i class="fa fa-phone" style="color: #4B5563; font-size: 1rem;"></i>
+              <i class="fa fa-phone" aria-hidden="true"></i>
+                  -->
+
+                  <img src="imgs/log.jpg" alt="Logo" style="height: 2.5rem; width: auto; ">
+            </button>
+        </div>
+
+        <nav style="margin-top: 1rem; padding: 1rem;">
+          <ul style="display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 0; list-style: none;">
+              <li>
+                  <a href="/" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                      <i class="fas fa-home" style="margin-right: 8px;"></i>Home
+                  </a>
+              </li>
+              <li>
+                  <a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                      <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Shop
+                  </a>
+              </li>
+              <li>
+                  <a href="/about.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                      <i class="fas fa-info-circle" style="margin-right: 8px;"></i>About
+                  </a>
+              </li>
+              <li>
+                  <a href="/contact.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                      <i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact
+                  </a>
+              </li>
+              <a>________________________</a>
+             <!-- Add Font Awesome CSS in the head of your HTML -->
+
+<ul style="list-style: none; padding: 0; margin: 0;">
+  <li>
+    <a href="./Help.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+        <i class="fas fa-question-circle" style="margin-right: 8px;"></i>
+        Help
+    </a>
+</li>
+    <li>
+        <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+            <i class="fas fa-headset" style="margin-right: 8px;"></i>
+            Support
+        </a>
+    </li>
+    <li>
+        <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+            <i class="fas fa-book-open" style="margin-right: 8px;"></i>
+            Read Article
+        </a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+          <i class="fas fa-file-contract" style="margin-right: 8px;"></i>
+          Terms and Services
+      </a>
+  </li>
+</ul>
+          </ul>
+      </nav>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const desktopNav = document.getElementById('desktop-nav');
+        const desktopSearch = document.getElementById('desktop-search');
+
+        // Function to check window width and update display
+        function checkWidth() {
+            if (window.innerWidth >= 640) {
+                desktopNav.style.display = 'block';
+                desktopSearch.style.display = 'block';
+                menuToggle.style.display = 'none';
+                mobileMenu.style.display = 'none';
+            } else {
+                desktopNav.style.display = 'none';
+                desktopSearch.style.display = 'none';
+                menuToggle.style.display = 'block';
+                mobileMenu.style.display = 'block';
+            }
+        }
+
+        // Initial check
+        checkWidth();
+
+        // Listen for window resize
+        window.addEventListener('resize', checkWidth);
+
+        // Toggle mobile menu
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.style.transform = 'translateX(0)';
+        });
+
+        closeMenu.addEventListener('click', function() {
+            mobileMenu.style.transform = 'translateX(100%)';
+        });
+
+        // Add hover effect to navigation links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#00B4D8';
+            });
+
+            link.addEventListener('mouseout', function() {
+                this.style.color = link.closest('#mobile-menu') ? '#374151' : '#ffffff';
+            });
+        });
+
+        // Add hover effect to icon links
+        const iconLinks = document.querySelectorAll('a[href="/cart"], a[href="/login"]');
+        iconLinks.forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#00B4D8';
+            });
+
+            link.addEventListener('mouseout', function() {
+                this.style.color = '#ffffff';
+            });
+        });
+    });
+</script>
 
  
 
-    <section id="product1" class="section-p1">
-        <h2> Our products</h2>
-        <p>Seasonal service demand is high</p>
-        <div class="pro-container">
-            <div class="pro" onclick="window.location.href='#'">
-                <img src="imgs/products/Napa.jpeg" alt="">
-                <div class="napa">
-                    <span>Morris Life Sciences Pvt.Ltd.</span>
-                    <h5>Napa Extend Tablet</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>MRP:24Rs</h4>
-                </div>
-                <but>Buy Now<i class="fas fa-shopping-cart"></i></but>
-            </div>
-            <div class="pro" onclick="window.location.href='#'">
-                <img src="imgs/products/Napa.jpeg" alt="">
-                <div class="napa">
-                    <span>Morris Life Sciences Pvt.Ltd.</span>
-                    <h5>Napa Extend Tablet</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>MRP:24tk</h4>
-                </div>
-                <a href="#">Buy Now<i class="fas fa-shopping-cart"></i></a>
-            </div>
-            <div class="pro" onclick="window.location.href='#'">
-                <img src="imgs/products/Napa.jpeg" alt="">
-                <div class="napa">
-                    <span>Morris Life Sciences Pvt.Ltd.</span>
-                    <h5>Napa Extend Tablet</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>MRP:24tk</h4>
-                </div>
-                <a href="#">Buy Now<i class="fas fa-shopping-cart"></i></a>
-            </div>
-            <div class="pro" onclick="window.location.href='#'">
-                <img src="imgs/products/Napa.jpeg" alt="">
-                <div class="napa">
-                    <span>Morris Life Sciences Pvt.Ltd.</span>
-                    <h5>Napa Extend Tablet</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>MRP:24tk</h4>
-                    
-                </div>
-                <a href="#">Buy Now   <i class="fas fa-shopping-cart"></i></a>
-            </div>
-            
-        </div>
-    </section>
-
+<section id="product1" class="section-p1">
+  <h2>Our products</h2>
+  <p>Seasonal service demand is high</p>
+  
+  <!-- Enhanced Search Bar -->
+  <div class="search-container">
+    <div class="search-input-wrapper">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search medicines..." autocomplete="off">
+      <button id="clearSearch" class="clear-search"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="suggestions" class="suggestions-container"></div>
+  </div>
+  
+  <style>
+    /* Basic styles */
+    .pro {
+      width: 250px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 10px;
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pro:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .pro img {
+      width: 100%;
+      height: auto;
+    }
+    .pro button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .pro button:hover {
+      background-color: #218838;
+    }
     
+    /* Enhanced Search styles */
+    .search-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      position: relative;
+     
+    }
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      color: #666;
+      font-size: 18px;
+      z-index: 1;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 15px 45px;
+      border: none;
+      border-radius: 50px;
+     background-color:  #c4abd1;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    #searchInput:focus {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      outline: none;
+    }
+    .clear-search {
+      position: absolute;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 16px;
+      display: none;
+    }
+    .clear-search:hover {
+      color: #555;
+    }
+    .suggestions-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 300px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: none;
+      margin-top: 5px;
+    }
+    .suggestion-item {
+      padding: 12px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s ease;
+    }
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+    .suggestion-item:hover {
+      background-color: #f8f9fa;
+    }
+    .suggestion-highlight {
+      font-weight: bold;
+      color: #007bff;
+    }
+    .no-results {
+      text-align: center;
+      padding: 30px 20px;
+      color: #dc3545;
+      font-size: 18px;
+    }
+    .highlight-result {
+      animation: highlight 1.5s ease;
+    }
+    
+    @keyframes highlight {
+      0% { box-shadow: 0 0 0 rgba(0, 123, 255, 0); }
+      50% { box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); }
+      100% { box-shadow: 0 0 0 rgba(0, 123, 255, 0); }
+    }
+
+    /* Responsive container */
+    .pro-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    /* Popup styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .popup {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 350px;
+    }
+    .popup p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .popup button {
+      margin: 5px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    .popup .call-now {
+      background-color: #007bff;
+      color: white;
+    }
+    .popup .call-now:hover {
+      background-color: #0056b3;
+    }
+    .popup .cancel {
+      background-color: #dc3545;
+      color: white;
+    }
+    .popup .cancel:hover {
+      background-color: #c82333;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .search-container {
+        padding: 0 15px;
+      }
+      .pro {
+        width: calc(50% - 20px);
+        margin: 10px 0;
+      }
+      .pro h5 {
+        font-size: 14px;
+      }
+      .pro h4 {
+        font-size: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .pro {
+        width: 100%;
+      }
+      #searchInput {
+        padding: 12px 40px;
+        font-size: 14px;
+      }
+      .search-icon {
+        left: 12px;
+      }
+      .clear-search {
+        right: 12px;
+      }
+    }
+  </style>
+
+  <!-- Product Cards -->
+  <div class="pro-container" id="productContainer">
+    <div class="pro" data-name="aripiprazole rablet" data-price="110">
+      <img src="imgs/Images//IMG_8710.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Aripiprazole Rablet I.P. 10mg</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 110Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+    <div class="pro" data-name="olanzapine mouth dissolving" data-price="95">
+      <img src="imgs/Images//IMG_8711.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Olanzapine Mouth Dissolving Tablets 10 mg</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 95Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="aceclofenac paracetamol thiocolchicoside" data-price="189">
+      <img src="imgs/Images//IMG_8709.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Aceclofenac, Paracetamol & Thiocolchicoside Tablets</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 189Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="benfotiamine methylcobalamin calcium alpha lipoic acid inositol" data-price="225">
+      <img src="imgs/Images/IMG_8708.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Benfotiamine, Methylcobalamin, Calcium, Alpha Lipoic Acid, Inositol</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 225Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="olanzapine mouth dissolving" data-price="50">
+      <img src="imgs/Images/IMG_8712.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Olanzapine Mouth Dissolving Tablets 5 mg</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 50Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="escitalopram" data-price="50">
+      <img src="imgs/Images/IMG_8714.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Escitalopram Tablets I.P. 5 mg</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 50Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="cefpodoxime proxetil" data-price="174">
+      <img src="imgs/Images//IMG_8715.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Cefpodoxime Proxetil Dispersible Tablets</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 174Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="aceclofenac paracetamol serratiopeptidase" data-price="94">
+      <img src="imgs/Images/IMG_8716.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Aceclofenac, Paracetamol & Serratiopeptidase Tablets</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 94Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="escitalopram clonazepam" data-price="140">
+      <img src="imgs/Images//IMG_8717.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Escitalopram & Clonazepam Tablets I.P</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 140Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+    
+    <div class="pro" data-name="olanzapine fluoxetine" data-price="110">
+      <img src="imgs/Images/IMG_8701.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Acedofenac &
+          Paracetamol Tablet</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 110Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+
+    <div class="pro" data-name="olanzapine fluoxetine" data-price="110">
+      <img src="imgs/Images/IMG_8720.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Escitalopram Tablets I.P. 10 mg</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 110Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+
+    <div class="pro" data-name="olanzapine fluoxetine" data-price="110">
+      <img src="imgs/Images/IMG_8721.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Aripiprazole
+          Tablets I.P. 5 mg</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 110Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+
+    <div class="pro" data-name="olanzapine fluoxetine" data-price="110">
+      <img src="imgs/Images/IMG_8707.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Vitamin A, Vitamin B Complex, Vitamin C, Zinc Oxide, Manganese Chloride, Folic Acid, Lycopene, Chromium Chloride And Sodium Selenate Tablets</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 110Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+
+    <div class="pro" data-name="olanzapine fluoxetine" data-price="110">
+      <img src="imgs/Images/IMG_8719.JPG" alt="">
+      <div class="napa">
+        <span>Morris Life Sciences Pvt.Ltd.</span>
+        <h5>Olanzapine &
+          Fluoxetine Tablets I.P.</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>MRP: 110Rs</h4>
+      </div>
+      <button class="buy-now">Call Now <i class="fas fa-shopping-cart"></i></button>
+    </div>
+  </div>
+
+
+  
+  <!-- Popup -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <p>Call now on <strong>+91 9765000429</strong>?</p>
+      <button class="call-now" id="callNow">Call</button>
+      <button class="cancel" id="cancelPopup">Cancel</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Product data for search and suggestions
+    const products = Array.from(document.querySelectorAll('.pro')).map(product => {
+      const name = product.querySelector('h5').textContent.trim();
+      const price = parseFloat(product.getAttribute('data-price'));
+      return { 
+        element: product, 
+        name: name, 
+        searchName: product.getAttribute('data-name'),
+        price: price 
+      };
+    });
+
+    // Elements
+    const searchInput = document.getElementById('searchInput');
+    const clearButton = document.getElementById('clearSearch');
+    const suggestionsContainer = document.getElementById('suggestions');
+    const productContainer = document.getElementById('productContainer');
+    const popupOverlay = document.getElementById('popupOverlay');
+    const callNowButton = document.getElementById('callNow');
+    const cancelPopupButton = document.getElementById('cancelPopup');
+
+    // Function to highlight matching text in suggestions
+    function highlightMatch(text, query) {
+      if (!query) return text;
+      
+      const lowerText = text.toLowerCase();
+      const lowerQuery = query.toLowerCase();
+      const index = lowerText.indexOf(lowerQuery);
+      
+      if (index === -1) return text;
+      
+      return text.substring(0, index) + 
+        '<span class="suggestion-highlight">' + 
+        text.substring(index, index + query.length) + 
+        '</span>' + 
+        text.substring(index + query.length);
+    }
+
+    // Function to show suggestions as user types
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      
+      // Show/hide clear button
+      clearButton.style.display = query.length > 0 ? 'block' : 'none';
+      
+      if (query.length < 1) {
+        suggestionsContainer.style.display = 'none';
+        // Show all products if search is cleared
+        products.forEach(product => {
+          product.element.style.display = 'inline-block';
+        });
+        return;
+      }
+      
+      // Filter products based on input
+      const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(query) || 
+        product.searchName.toLowerCase().includes(query)
+      );
+      
+      // Display suggestions
+      if (filteredProducts.length > 0) {
+        suggestionsContainer.innerHTML = '';
+        
+        // Add heading for suggestions
+        const heading = document.createElement('div');
+        heading.className = 'suggestion-item';
+        heading.style.fontWeight = 'bold';
+        heading.style.backgroundColor = '#f0f0f0';
+        heading.textContent = 'Suggested Medicines';
+        suggestionsContainer.appendChild(heading);
+        
+        filteredProducts.forEach(product => {
+          const suggestionItem = document.createElement('div');
+          suggestionItem.className = 'suggestion-item';
+          suggestionItem.innerHTML = highlightMatch(product.name, query);
+          
+          // Add price to suggestion
+          const priceSpan = document.createElement('span');
+          priceSpan.textContent = ` - ${product.price}Rs`;
+          priceSpan.style.color = '#666';
+          priceSpan.style.fontSize = '0.9em';
+          suggestionItem.appendChild(priceSpan);
+          
+          suggestionItem.addEventListener('click', () => {
+            searchInput.value = product.name;
+            searchAndHighlight(product.element);
+            suggestionsContainer.style.display = 'none';
+          });
+          suggestionsContainer.appendChild(suggestionItem);
+        });
+        
+        suggestionsContainer.style.display = 'block';
+      } else {
+        suggestionsContainer.style.display = 'none';
+      }
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+      if (e.target !== searchInput && !suggestionsContainer.contains(e.target)) {
+        suggestionsContainer.style.display = 'none';
+      }
+    });
+
+    // Clear search function
+    clearButton.addEventListener('click', function() {
+      searchInput.value = '';
+      searchInput.focus();
+      clearButton.style.display = 'none';
+      suggestionsContainer.style.display = 'none';
+      
+      // Show all products
+      products.forEach(product => {
+        product.element.style.display = 'inline-block';
+      });
+      
+      // Remove no results message if it exists
+      const noResults = document.querySelector('.no-results');
+      if (noResults) {
+        noResults.remove();
+      }
+    });
+
+    // Function to search and highlight a specific product
+    function searchAndHighlight(productElement) {
+      // Hide all products first
+      products.forEach(product => {
+        product.element.style.display = 'none';
+      });
+      
+      // Show just the matched product
+      productElement.style.display = 'inline-block';
+      
+      // Add highlight animation
+      productElement.classList.add('highlight-result');
+      
+      // Remove animation class after it completes
+      setTimeout(() => {
+        productElement.classList.remove('highlight-result');
+      }, 1500);
+      
+      // Remove previous no results message if it exists
+      const prevNoResults = document.querySelector('.no-results');
+      if (prevNoResults) {
+        prevNoResults.remove();
+      }
+      
+      // Show clear button
+      clearButton.style.display = 'block';
+    }
+
+    // Main search function
+    function searchProducts() {
+      const query = searchInput.value.toLowerCase().trim();
+      
+      if (query === '') {
+        // Show all products if search is empty
+        products.forEach(product => {
+          product.element.style.display = 'inline-block';
+        });
+        
+        // Remove no results message if it exists
+        const noResults = document.querySelector('.no-results');
+        if (noResults) {
+          noResults.remove();
+        }
+        
+        return;
+      }
+      
+      // Filter products based on search
+      const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(query) || 
+        product.searchName.toLowerCase().includes(query)
+      );
+      
+      // Sort filtered products by relevance (exact match first, then by price)
+      filteredProducts.sort((a, b) => {
+        // Exact match gets priority
+        const aExactMatch = a.name.toLowerCase() === query || a.searchName.toLowerCase() === query;
+        const bExactMatch = b.name.toLowerCase() === query || b.searchName.toLowerCase() === query;
+        
+        if (aExactMatch && !bExactMatch) return -1;
+        if (!aExactMatch && bExactMatch) return 1;
+        
+        // Starts with gets second priority
+        const aStartsWith = a.name.toLowerCase().startsWith(query) || a.searchName.toLowerCase().startsWith(query);
+        const bStartsWith = b.name.toLowerCase().startsWith(query) || b.searchName.toLowerCase().startsWith(query);
+        
+        if (aStartsWith && !bStartsWith) return -1;
+        if (!aStartsWith && bStartsWith) return 1;
+        
+        // Otherwise sort by price (lowest first)
+        return a.price - b.price;
+      });
+      
+      // Hide all products first
+      products.forEach(product => {
+        product.element.style.display = 'none';
+      });
+      
+      // Remove previous no results message if it exists
+      const prevNoResults = document.querySelector('.no-results');
+      if (prevNoResults) {
+        prevNoResults.remove();
+      }
+      
+      // Show filtered products
+      if (filteredProducts.length > 0) {
+        filteredProducts.forEach(product => {
+          product.element.style.display = 'inline-block';
+        });
+      } else {
+        // Show no results message
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = 'No medicines found matching "<strong>' + query + '</strong>"<br><small>Try searching for a different medicine or ingredient</small>';
+        productContainer.appendChild(noResults);
+      }
+      
+      // Hide suggestions
+      suggestionsContainer.style.display = 'none';
+    }
+
+    // Search on Enter key
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        searchProducts();
+      }
+    });
+    
+    // Add touch support for mobile
+    let touchStartY;
+    suggestionsContainer.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    suggestionsContainer.addEventListener('touchmove', function(e) {
+      const touchY = e.touches[0].clientY;
+      const scrollTop = suggestionsContainer.scrollTop;
+      const scrollHeight = suggestionsContainer.scrollHeight;
+      const height = suggestionsContainer.offsetHeight;
+      
+      // Prevent default only when scrolled to top or bottom
+      if ((scrollTop === 0 && touchY > touchStartY) ||
+          (scrollTop + height >= scrollHeight && touchY < touchStartY)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // Event delegation for "Call Now" buttons
+    productContainer.addEventListener('click', (event) => {
+      if (event.target.classList.contains('buy-now') || 
+          event.target.parentElement.classList.contains('buy-now')) {
+        popupOverlay.style.display = 'flex';
+      }
+    });
+
+    // Redirect to call on "Call Now" click
+    callNowButton.addEventListener('click', () => {
+      window.location.href = 'tel:+919765000429';
+    });
+
+    // Hide popup on "Cancel" click
+    cancelPopupButton.addEventListener('click', () => {
+      popupOverlay.style.display = 'none';
+    });
+    
+    // Close popup when clicking outside
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.style.display = 'none';
+      }
+    });
+  </script>
+</section>
+    
+        <!-- Sample -->
 
    
     
 
-    <footer class="section-p1">
-        <div class="col">
-            <img width="100px" src="imgs/logo.jpg" class="logo">
-            <h4>Contact</h4>
-            <p><strong>Address:</strong>IDB Bhaban, E/8-A, Dhaka 1207</p>
-            <p><strong>Phone:</strong>+88 01537215709</p>
-            <p><strong>Hours:</strong>10:00AM - 5:00PM Sun-Fri</p>
-            <div class="follow">
-                <h4>Follow</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About us</a>
-            <a href="#">Delivery information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms $ Conditions</a>
-            <a href="#">Contact us</a>
-        </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track my order</a>
-            <a href="#">Help</a>
-        </div>
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App store or Google play</p>
-            <div>
-                <img width="100px" src="imgs/features/Google-Play-App.png" alt="">
-                <img src="" alt="">
-            </div>
-            <p>Secured Payment Gateway</p>
-            <img src="" alt="">
-        </div>
-        <div class="copyright">
-            <p>@ 2023,A2Z Services --Ecommerce Site</p>
-        </div>
-    </footer>
+        <footer class="section-p1" style="background: #989595; color: white; padding: 40px 20px; text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between;">
+          <div class="col" style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+              <img width="100px" src="imgs/logo.png" class="logo">
+              <h4 style="margin: 10px 0;">Contact</h4>
+              <p style="font-size: 14px;"><strong>Address:</strong> 103, Shri Gajanan Residency, Mankapur, Nagpur-440030</p>
+              <p style="font-size: 14px;"><strong>Phone:</strong> +91 9765000429</p>
+              <p style="font-size: 14px;"><strong>Hours:</strong> 10:00AM - 5:00PM Sun-Fri</p>
+              <div class="follow">
+                  <h4 style="margin: 10px 0;">Follow</h4>
+                  <div class="icon" style="display: flex; gap: 10px; font-size: 18px;">
+                      <i class="fab fa-facebook-f"></i>
+                      <i class="fab fa-twitter"></i>
+                      <i class="fab fa-instagram"></i>
+                      <i class="fab fa-pinterest"></i>
+                      <i class="fab fa-youtube"></i>
+                  </div>
+              </div>
+          </div>
+          <div class="col" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+              <h4 style="margin-bottom: 10px;">About</h4>
+              <a href="about.html" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">About us</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Delivery information</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Privacy Policy</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Terms & Conditions</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Contact us</a>
+          </div>
+          <div class="col" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+              <h4 style="margin-bottom: 10px;">My Account</h4>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Sign In</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">View Cart</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">My Wishlist</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Track my order</a>
+              <a href="#" style="color: white; text-decoration: none; font-size: 14px; display: block; margin: 5px 0;">Help</a>
+          </div>
+          <div class="col install" style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+              <h4 style="margin-bottom: 10px;">Install App</h4>
+              <p style="font-size: 14px;">From App Store or Google Play</p>
+              <div style="display: flex; gap: 10px;">
+                  <img width="100px" src="imgs/features/Google-Play-App.png" alt="">
+                  <img width="100px" src="" alt="">
+              </div>
+              <p style="font-size: 14px;">Secured Payment Gateway</p>
+              <img width="100px" src="" alt="">
+          </div>
+          <div class="copyright" style="width: 100%; text-align: center; margin-top: 20px; font-size: 14px;">
+              <p>&copy; 2024, Morris Life Sciences</p>
+          </div>
+          
+          <!-- Media Query -->
+          <style>
+              @media (max-width: 768px) {
+                  .section-p1 { 
+                      display: flex; 
+                      flex-direction: column; 
+                      align-items: center;
+                      text-align: center;
+                      padding: 10px;
+                      background: #ffffff; /* Darker background for mobile */
+                  }
+                  .col { 
+                      display: none;
+                  }
+                  .copyright {
+                      display: block;
+                      font-size: 12px; /* Smaller font for mobile */
+                      color: #bbb; /* Light gray text */
+                  }
+              }
+          </style>
+        </footer>
     <script src="script.js"></script>
 </body>
 </html>

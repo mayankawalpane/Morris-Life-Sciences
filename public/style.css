@@ -3,12 +3,12 @@
     margin : 0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Spartan',sans-serif;
+    font-family: 'Gemunu Libre', sans-serif;
 }
 h1 {
     font-size:50px;
     line-height:64px;
-    color:#222;
+    color:#ffffff;
 }
 h2 {
     font-size: 46px;
@@ -17,7 +17,7 @@ h2 {
 }
 h4 {
     font-size: 20px;
-    color: darkorange;
+    color: rgb(0, 0, 0);
 }
 h6 {
     font-weight:700;
@@ -30,6 +30,7 @@ p {
 }
 .section-p1 {
     padding:40px 80px;
+    margin-top: 5rem;
 }
 .section-m1 {
     margin:40px 0;
@@ -60,63 +61,20 @@ button.white {
 body {
     width:100%;
 }
-#header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 80px;
-    background: #7B68EE;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
-    z-index: 999;
-    position: sticky;
-    top: 0;
-    left: 0;
-}
-#navbar {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-    #navbar li {
-        list-style:none;
-        padding:0 20px;
-        position:relative;
-    }
-        #navbar li a {
-            text-decoration:none;
-            font-size:16px;
-            font-weight:600;
-            color:rgba(0,0,0,0.6);
-            transition:0.3s ease;
 
-        }
-            #navbar li a:hover,
-            #navbar li a.active {
-                color: aqua;
-            }
-                #navbar li a.active::after,
-                #navbar li a:hover::after {
-                    content: "";
-                    width: 30%;
-                    height: 2px;
-                    background-color: aqua;
-                    position: absolute;
-                    bottom: -4px;
-                    left: 20px;
-                }
 
-#hero {
+/* #hero {
     background-image: url("imgs/covers/medicine.jpg");
     height: 90vh;
     width: 100%;
     background-size: cover;
-    background-position: top 25% right 0;
+    background-position: top 20% right 0;
     padding: 0 80px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-}
+} */
     #hero h4 {
         padding-bottom:15px;
 
@@ -172,7 +130,7 @@ button:hover {
     #feature .fe-box :nth-child(3) h6 {
         background-color: darkkhaki;
     }
-footer {
+/* footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -223,7 +181,7 @@ footer {
     footer .copyright  {
         width:100%;
         text-align:center;
-    }
+    } */
 #product1 {
     text-align:center;
 
@@ -405,7 +363,7 @@ footer {
 
 }
 #SecondAB {
-    background-image: url("https://www.jharkhanditsolutions.com/wp-content/uploads/2012/12/about-us-banner.jpg");
+    background-image: url("imgs/banners/AboutBanner.webp");
     width: 100%;
     height: 40vh;
     background-size: cover;
@@ -601,7 +559,7 @@ footer {
 h1 {
     font-size: 50px;
     line-height: 64px;
-    color: #222;
+    color: #ffffff;
 }
 
 h2 {
@@ -667,7 +625,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 20px 80px;
-    background: #f19844;
+    background: #446cf1fc;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     z-index: 999;
     position: sticky;
@@ -691,7 +649,7 @@ body {
     text-decoration: none;
     font-size: 16px;
     font-weight: 600;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.6);
     transition: 0.3s ease;
 }
 
@@ -710,7 +668,7 @@ body {
     bottom: -4px;
     left: 20px;
 }
-
+/* 
 #hero {
     background-image: url("imgs/covers/medicine.jpg");
     height: 90vh;
@@ -722,7 +680,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-}
+} */
 
 #hero h4 {
     padding-bottom: 15px;
@@ -788,7 +746,7 @@ button:hover {
     background-color: darkkhaki;
 }
 
-footer {
+/* footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -850,7 +808,7 @@ footer a:hover {
 footer .copyright {
     width: 100%;
     text-align: center;
-}
+} */
 
 #product1 {
     text-align: center;
@@ -1052,7 +1010,7 @@ footer .copyright {
 }
 
 #SecondAB {
-    background-image: url("https://as2.ftcdn.net/v2/jpg/00/56/46/73/1000_F_56467389_N24WALz6gt55OYLho3hVypZM8WoJzxfD.jpg");
+    /* background-image: url("https://as2.ftcdn.net/v2/jpg/00/56/46/73/1000_F_56467389_N24WALz6gt55OYLho3hVypZM8WoJzxfD.jpg"); */
     width: 100%;
     height: 68vh;
     background-size: cover;
@@ -1064,9 +1022,9 @@ footer .copyright {
 }
 
 #SecondCT {
-    background-image: url("https://it-expertsolutions.com/images/2020/10/30/contact-us-banner.jpg");
+    background-image: url("imgs/banners/contactgpt.webp");
     width: 100%;
-    height: 40vh;
+    height: 70vh;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -1333,14 +1291,14 @@ footer .copyright {
         width: 100%;
     }
 
-    footer {
+    /* footer {
         flex-direction: column;
         align-items: center;
     }
 
     footer .col {
         align-items: center;
-    }
+    } */
 }
 
 
@@ -1424,60 +1382,4 @@ body {
   /* General Styles */
 
   
-  #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 28px;
-    background-color:#f19844;
-    position: relative;
-  }
-  
-
-  #navbar li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-  }
-  
-  #menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-  
-  #menu-toggle span {
-    width: 30px;
-    height: 3px;
-    background-color: #333;
-    transition: 0.3s;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    #menu-toggle {
-      display: flex;
-    }
-  
-    #navbar {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background-color: #e27516;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-  
-    #navbar.active {
-      display: flex;
-    }
-  
-    #navbar li {
-      margin: 10px 0;
-    }
-  }
   
