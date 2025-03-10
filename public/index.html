@@ -13,7 +13,7 @@
 </head>
 <body>
 <!---- Header Section  Mayank ---->
-  <header style="background-color: #66006e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+  <header style="background-color: #d1115b; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
         <div style="display: flex; align-items: center; gap: 2rem;">
             <!-- Logo -->
@@ -25,9 +25,11 @@
             <nav id="desktop-nav" style="display: none;">
                 <ul style="display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none;">
                     <li><a href="/" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Home</a></li>
-                    <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Shop</a></li>
+                    <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Products</a></li>
                     <li><a href="/about.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">About</a></li>
                     <li><a href="/contact.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Contact</a></li>
+                    <li><a href="/career.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Career</a></li>
+
                 </ul>
             </nav>
         </div>
@@ -47,16 +49,15 @@
             </a>
             <a href="javascript:void(0);" onclick="showCallPopup()" class="call-icon">
               <i class="fa fa-phone" aria-hidden="true"></i>
-              
             </a>
-           
+            
             <!-- Call Popup -->
             <div id="callPopup" class="popup-overlay">
               <div class="popup-box">
-                <p class="popup-text">Call on <strong>+91 9765000429</strong>?</p>
+                <p class="popup-text">Call on <strong>+91 6265115253</strong>?</p>
                 <div class="popup-buttons">
-                  <button onclick="makeCall()" class="btn call-btn">📞 Call</button>
-                  <button onclick="closePopup()" class="btn cancel-btn">❌ Cancel</button>
+                  <button id="callButton" class="btn call-btn">📞 Call</button>
+                  <button id="cancelButton" class="btn cancel-btn">❌ Cancel</button>
                 </div>
               </div>
             </div>
@@ -86,7 +87,7 @@
             
               .call-icon i {
                 font-size: 1.5rem;
-                transform: rotate(100deg); /* Ensures the icon is not rotated */
+                transform: rotate(100deg);
               }
             
               /* Popup Styling */
@@ -101,6 +102,7 @@
                 backdrop-filter: blur(3px);
                 justify-content: center;
                 align-items: center;
+                z-index: 9999;
               }
             
               .popup-box {
@@ -158,17 +160,30 @@
             
             <!-- JavaScript for Popup -->
             <script>
-              function showCallPopup() {
-                document.getElementById("callPopup").style.display = "flex";
-              }
-            
-              function closePopup() {
-                document.getElementById("callPopup").style.display = "none";
-              }
-            
-              function makeCall() {
-                window.location.href = "tel:+919765000429";
-              }
+              // Wait for DOM to be fully loaded
+              document.addEventListener("DOMContentLoaded", function() {
+                // Get elements by ID instead of using inline onclick
+                const callPopup = document.getElementById("callPopup");
+                const callButton = document.getElementById("callButton");
+                const cancelButton = document.getElementById("cancelButton");
+                
+                // Function to show popup
+                window.showCallPopup = function() {
+                  callPopup.style.display = "flex";
+                };
+                
+                // Add click event for call button
+                callButton.addEventListener("click", function() {
+                  window.location.href = "tel:+916265115253";
+                  callPopup.style.display = "none";
+                });
+                
+                // Add click event for cancel button
+                cancelButton.addEventListener("click", function() {
+                  callPopup.style.display = "none";
+                  console.log("Cancel button clicked - popup hidden");
+                });
+              });
             </script>
             
             
@@ -209,7 +224,7 @@
               </li>
               <li>
                   <a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
-                      <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Shop
+                      <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Products
                   </a>
               </li>
               <li>
@@ -222,6 +237,11 @@
                       <i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact
                   </a>
               </li>
+              <li>
+                <a href="/career.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                    <i class="fa fa-fighter-jet" aria-hidden="true" style="margin-right: 8px;"></i>Careers
+                </a>
+            </li>
               <a>________________________</a>
              <!-- Add Font Awesome CSS in the head of your HTML -->
 
@@ -379,7 +399,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(225, 163, 242, 0.85);
+      background: rgba(224, 159, 196, 0.85);
       z-index: 1;
       transform: translateY(20px);
       opacity: 0;
@@ -413,7 +433,7 @@
     }
 
     .accent {
-      color: #66006e;
+      color: #d1115b;
       position: relative;
       display: inline-block;
     }
@@ -425,7 +445,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background-color: #66006e;
+      background-color: #d1115b;
       animation: expandLine 0.8s ease-out 1.7s forwards;
     }
 
@@ -441,7 +461,7 @@
     }
 
     .animated-button {
-      background: #66006e;
+      background: #d1115b;
       color: white;
       border: none;
       padding: 12px 30px;
@@ -451,37 +471,13 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      transform: translateY(30px);
-      opacity: 0;
-      animation: slideUp 0.8s ease-out 1.3s forwards, pulse 2s infinite 2s;
-    }
-
-    .animated-button:hover {
-      background: #4d0052;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(102, 0, 110, 0.3);
-      animation: none;
-    }
-
-    .animated-button:active {
-      transform: scale(0.95);
-    }
-
-    .animated-button.clicked {
-      animation: pulse 0.5s ease-out;
-    }
-
-    .animated-button span {
-      font-size: 1.2rem;
-      transition: transform 0.3s ease;
-    }
-
-    .animated-button:hover span {
-      transform: translateX(5px);
-    }
+      transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .animated-button:hover {
+      transform: scale(1.05);
+  }
+  
 
     .ripple {
       position: absolute;
@@ -493,7 +489,7 @@
     }
 
     .health {
-      color: #66006e;
+      color: #d1115b;
       font-size: 35px;
       text-align: center;
       margin: 5% auto 3% auto;
@@ -1384,7 +1380,7 @@
         }
 
         .hero-section {
-            background: linear-gradient(135deg, #66006e, #400043);
+            background: linear-gradient(135deg, #d1115b, #400043);
             color: white;
             padding: 100px 20px;
             text-align: center;
@@ -1430,13 +1426,13 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: #66006e;
+            border-color: #d1115b;
         }
 
         .icon {
             font-size: 40px;
             margin-bottom: 20px;
-            color: #66006e;
+            color: #d1115b;
             transition: transform 0.3s ease;
         }
 
@@ -1465,7 +1461,7 @@
 
         .slide:hover {
             transform: translateY(-5px) scale(1.02);
-            border-color: #66006e;
+            border-color: #d1115b;
         }
 
         .stat-container {
@@ -1487,12 +1483,12 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
-            border-color: #66006e;
+            border-color: #d1115b;
         }
 
         .stat-number {
             font-size: 48px;
-            color: #66006e;
+            color: #d1115b;
             margin: 15px 0;
             font-weight: bold;
         }
@@ -1512,7 +1508,7 @@
             display: inline-block;
             padding: 18px 40px;
             background: white;
-            color: #66006e;
+            color: #d1115b;
             text-decoration: none;
             border-radius: 50px;
             margin-top: 30px;
@@ -1526,7 +1522,7 @@
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            background: #66006e;
+            background: #d1115b;
             color: white;
         }
 
@@ -1634,7 +1630,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background: #66006e;
+            background: #d1115b;
             color: white;
             padding: 5px 10px;
             border-radius: 20px;
@@ -1655,7 +1651,7 @@
         }
 
         .morris_product_title {
-            color: #66006e;
+            color: #d1115b;
             font-size: 1.2rem;
             margin: 0 0 10px 0;
             font-weight: 600;
@@ -1678,7 +1674,7 @@
         }
 
         .morris_product_button {
-            background: #66006e;
+            background: #d1115b;
             color: white;
             border: none;
             padding: 8px 15px;
@@ -1737,7 +1733,7 @@
             right: 15px;
             width: 30px;
             height: 30px;
-            background: #66006e;
+            background: #d1115b;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1777,7 +1773,7 @@
         }
 
         .morris_popup_title {
-            color: #66006e;
+            color: #d1115b;
             font-size: 1.5rem;
             margin-bottom: 15px;
         }
@@ -1802,7 +1798,7 @@
         }
 
         .morris_popup_detail_label {
-            color: #66006e;
+            color: #d1115b;
             font-weight: 600;
             font-size: 0.9rem;
             margin-bottom: 5px;
@@ -1876,7 +1872,7 @@
                 <h3 class="morris_product_title">Aripiprazole Tablets </h3>
                 <p class="morris_product_description">Aripiprazole is an antipsychotic medication used to treat schizophrenia, bipolar disorder, and as an adjunct for major depressive disorder. It helps balance certain brain chemicals to improve mood, behavior, and thinking. Always take as prescribed by a healthcare professional.</p>
                 <div class="morris_product_price">
-                    <span style="color: #66006e; font-weight: 600;">₹58.00</span>
+                    <span style="color: #d1115b; font-weight: 600;">₹58.00</span>
                     <button class="morris_product_button">View Details</button>
                 </div>
             </div>
@@ -1892,7 +1888,7 @@
                 <h3 class="morris_product_title">Escitalopram Tablets I.P. 10 mg</h3>
                 <p class="morris_product_description">Escitalopram is an antidepressant used to treat depression and anxiety disorders. It works by increasing serotonin levels in the brain, improving mood and emotional balance. Take as directed by a healthcare professional.</p>
                 <div class="morris_product_price">
-                    <span style="color: #66006e; font-weight: 600;">₹90.00</span>
+                    <span style="color: #d1115b; font-weight: 600;">₹90.00</span>
                     <button class="morris_product_button">View Details</button>
                 </div>
             </div>
@@ -2004,41 +2000,41 @@
             <div class="stat-card">
                 <i class="fas fa-box-open icon floating-icon"></i>
                 <div class="stat-number" data-target="200000">200,000+</div>
-                <p style="font-size: 18px; color: #66006e;">Products Available</p>
+                <p style="font-size: 18px; color: #d1115b;">Products Available</p>
             </div>
             <div class="stat-card">
                 <i class="fas fa-user-md icon floating-icon"></i>
                 <div class="stat-number" data-target="20">20+</div>
-                <p style="font-size: 18px; color: #66006e;">Medical Specialties</p>
+                <p style="font-size: 18px; color: #d1115b;">Medical Specialties</p>
             </div>
             <div class="stat-card">
                 <i class="fas fa-vials icon floating-icon"></i>
                 <div class="stat-number" data-target="2000">2,000+</div>
-                <p style="font-size: 18px; color: #66006e;">Lab Tests</p>
+                <p style="font-size: 18px; color: #d1115b;">Lab Tests</p>
             </div>
         </section>
 
         <section id="services" style="margin: 80px 0;">
-            <h2 style="font-size: 42px; color: #66006e; text-align: center; margin-bottom: 50px;">Our Services</h2>
+            <h2 style="font-size: 42px; color: #d1115b; text-align: center; margin-bottom: 50px;">Our Services</h2>
             <div class="slider">
                 <div class="slide">
                     <i class="fas fa-pills icon floating-icon"></i>
-                    <h3 style="color: #66006e; margin-bottom: 15px;">Online Medicine</h3>
+                    <h3 style="color: #d1115b; margin-bottom: 15px;">Online Medicine</h3>
                     <p>Doorstep delivery within hours</p>
                 </div>
                 <div class="slide">
                     <i class="fas fa-notes-medical icon floating-icon"></i>
-                    <h3 style="color: #66006e; margin-bottom: 15px;">Health Information</h3>
+                    <h3 style="color: #d1115b; margin-bottom: 15px;">Health Information</h3>
                     <p>Expert medical information</p>
                 </div>
                 <div class="slide">
                     <i class="fas fa-microscope icon floating-icon"></i>
-                    <h3 style="color: #66006e; margin-bottom: 15px;">Home Lab Tests</h3>
+                    <h3 style="color: #d1115b; margin-bottom: 15px;">Home Lab Tests</h3>
                     <p>Certified lab testing services</p>
                 </div>
                 <div class="slide">
                     <i class="fas fa-video icon floating-icon"></i>
-                    <h3 style="color: #66006e; margin-bottom: 15px;">Video Consult</h3>
+                    <h3 style="color: #d1115b; margin-bottom: 15px;">Video Consult</h3>
                     <p>24/7 doctor consultations</p>
                 </div>
             </div>
@@ -2047,17 +2043,17 @@
         <section class="feature-grid fade-in">
             <div class="feature-item">
                 <i class="fas fa-shield-alt icon floating-icon"></i>
-                <h3 style="color: #66006e; margin: 15px 0;">100% Genuine</h3>
+                <h3 style="color: #d1115b; margin: 15px 0;">100% Genuine</h3>
                 <p>All medicines are verified and certified</p>
             </div>
             <div class="feature-item">
                 <i class="fas fa-truck-fast icon floating-icon"></i>
-                <h3 style="color: #66006e; margin: 15px 0;">Fast Delivery</h3>
+                <h3 style="color: #d1115b; margin: 15px 0;">Fast Delivery</h3>
                 <p>Same-day delivery in Nagpur</p>
             </div>
             <div class="feature-item">
                 <i class="fas fa-tags icon floating-icon"></i>
-                <h3 style="color: #66006e; margin: 15px 0;">Best Prices</h3>
+                <h3 style="color: #d1115b; margin: 15px 0;">Best Prices</h3>
                 <p>Competitive prices and regular offers</p>
             </div>
         </section>
@@ -2166,7 +2162,7 @@
       <img width="100px" src="imgs/logo.png" class="logo">
       <h4 style="margin: 10px 0;">Contact</h4>
       <p style="font-size: 14px;"><strong>Address:</strong> 103, Shri Gajanan Residency, Mankapur, Nagpur-440030</p>
-      <p style="font-size: 14px;"><strong>Phone:</strong> +91 9765000429</p>
+      <p style="font-size: 14px;"><strong>Phone:</strong> +91 6265115253 </p>
       <p style="font-size: 14px;"><strong>Hours:</strong> 10:00AM - 5:00PM Sun-Fri</p>
       <div class="follow">
           <h4 style="margin: 10px 0;">Follow</h4>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header style="background-color: #66006e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+  <header style="background-color: #d1115b; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 1.25rem; position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
         <div style="display: flex; align-items: center; gap: 2rem;">
             <!-- Logo -->
@@ -23,9 +23,11 @@
             <nav id="desktop-nav" style="display: none;">
                 <ul style="display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none;">
                     <li><a href="/" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Home</a></li>
-                    <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Shop</a></li>
+                    <li><a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Products</a></li>
                     <li><a href="/about.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">About</a></li>
                     <li><a href="/contact.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Contact</a></li>
+                    <li><a href="/career.html" class="nav-link" style="font-size: 16px; color: #ffffff; text-decoration: none; padding: 0.5rem; transition: color 0.3s ease;">Career</a></li>
+
                 </ul>
             </nav>
         </div>
@@ -51,7 +53,7 @@
             <!-- Call Popup -->
             <div id="callPopup" class="popup-overlay">
               <div class="popup-box">
-                <p class="popup-text">Call on <strong>+91 9765000429</strong>?</p>
+                <p class="popup-text">Call on <strong>+91 6265115253 </strong>?</p>
                 <div class="popup-buttons">
                   <button onclick="makeCall()" class="btn call-btn">📞 Call</button>
                   <button onclick="closePopup()" class="btn cancel-btn">❌ Cancel</button>
@@ -165,7 +167,7 @@
               }
             
               function makeCall() {
-                window.location.href = "tel:+919765000429";
+                window.location.href = "tel:+91 6265115253 ";
               }
             </script>
             
@@ -207,7 +209,7 @@
               </li>
               <li>
                   <a href="/Shop.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
-                      <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Shop
+                      <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>Products
                   </a>
               </li>
               <li>
@@ -220,6 +222,11 @@
                       <i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact
                   </a>
               </li>
+              <li>
+                <a href="/career.html" class="nav-link" style="font-size: 16px; color: #374151; text-decoration: none; display: block; padding: 0.5rem; transition: color 0.3s ease;">
+                    <i class="fa fa-fighter-jet" aria-hidden="true" style="margin-right: 8px;"></i>Careers
+                </a>
+            </li>
               <a>________________________</a>
              <!-- Add Font Awesome CSS in the head of your HTML -->
 
@@ -231,19 +238,19 @@
     </a>
 </li>
     <li>
-        <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+        <a href="Support.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
             <i class="fas fa-headset" style="margin-right: 8px;"></i>
             Support
         </a>
     </li>
     <li>
-        <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+        <a href="/Artical.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
             <i class="fas fa-book-open" style="margin-right: 8px;"></i>
             Read Article
         </a>
     </li>
     <li>
-      <a href="#" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
+      <a href="Terms.html" style="text-decoration: none; color: #374151; display: flex; align-items: center; padding: 8px 0;">
           <i class="fas fa-file-contract" style="margin-right: 8px;"></i>
           Terms and Services
       </a>
@@ -317,7 +324,6 @@
         });
     });
 </script>
-
  
 
 <section id="product1" class="section-p1">
@@ -806,7 +812,7 @@
   <!-- Popup -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
-      <p>Call now on <strong>+91 9765000429</strong>?</p>
+      <p>Call now on <strong>+91 6265115253 </strong>?</p>
       <button class="call-now" id="callNow">Call</button>
       <button class="cancel" id="cancelPopup">Cancel</button>
     </div>
@@ -1075,7 +1081,7 @@
 
     // Redirect to call on "Call Now" click
     callNowButton.addEventListener('click', () => {
-      window.location.href = 'tel:+919765000429';
+      window.location.href = 'tel:+91 6265115253 ';
     });
 
     // Hide popup on "Cancel" click
@@ -1102,7 +1108,7 @@
               <img width="100px" src="imgs/logo.png" class="logo">
               <h4 style="margin: 10px 0;">Contact</h4>
               <p style="font-size: 14px;"><strong>Address:</strong> 103, Shri Gajanan Residency, Mankapur, Nagpur-440030</p>
-              <p style="font-size: 14px;"><strong>Phone:</strong> +91 9765000429</p>
+              <p style="font-size: 14px;"><strong>Phone:</strong> +91 6265115253 </p>
               <p style="font-size: 14px;"><strong>Hours:</strong> 10:00AM - 5:00PM Sun-Fri</p>
               <div class="follow">
                   <h4 style="margin: 10px 0;">Follow</h4>
